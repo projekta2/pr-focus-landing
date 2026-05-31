@@ -148,11 +148,10 @@
       transform: translateY(-2px);
     }
 
-    /* Hero section – sin fondo de imagen problemático */
+    /* Hero section */
     .hero {
       text-align: center;
       padding: 80px 0 60px;
-      position: relative;
     }
 
     .hero h1 {
@@ -181,9 +180,25 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
-    /* Banner image as a separate section (optional) */
+    .launch-note {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      background: rgba(249,115,22,0.08);
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 30px;
+      border: 1px solid rgba(249,115,22,0.2);
+      margin-top: 8px;
+    }
+
+    .launch-note strong {
+      color: #f97316;
+    }
+
+    /* Banner image */
     .banner-img {
       max-width: 1000px;
       margin: 20px auto 40px;
@@ -251,6 +266,21 @@
       max-width: 600px;
       margin: 60px auto;
       overflow: hidden;
+      position: relative;
+    }
+
+    .launch-badge {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: #f97316;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.05em;
+      z-index: 1;
     }
 
     .pricing-header {
@@ -269,6 +299,13 @@
       font-size: 1rem;
       font-weight: 400;
       color: #9ca3af;
+    }
+
+    .price-old {
+      font-size: 1.2rem;
+      color: #6b7280;
+      text-decoration: line-through;
+      margin-right: 8px;
     }
 
     .pricing-features {
@@ -410,6 +447,10 @@
       .hero { padding: 50px 0; }
       .steps { flex-direction: column; }
       .section-title { font-size: 1.6rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+      .launch-badge { position: relative; top: auto; display: inline-block; margin-top: 12px; width: fit-content; }
+      .pricing-header { padding-top: 48px; }
     }
   </style>
 </head>
@@ -428,25 +469,24 @@
       </div>
     </div>
 
-    <div class="hero-buttons">
-  <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" data-i18n="buyNowLaunch">
-    <span style="display: flex; flex-direction: column; line-height: 1.2;">
-      <span>Get PRO – Launch special</span>
-      <span style="font-size: 0.7rem; font-weight: normal; opacity: 0.9;">🔥 50% OFF – Limited time 🔥</span>
-    </span>
-  </a>
-  <a href="#features" class="btn-outline" data-i18n="learnMore">Learn more ↓</a>
-  <a href="https://projekta2.github.io/projekta2-pr-focus-landing/pr-focus-demo.html" class="btn-outline" target="_blank">
-    <i class="fas fa-play-circle"></i> Live demo
-  </a>
-      <p style="margin-top: 16px; font-size: 0.85rem; color: var(--muted);">
-  <strong style="color: var(--accent);">Launch offer:</strong> Regular $19 – Now $9.50 (50% off). 
-  Limited units. Price increases after launch.
-</p>
-</div>
+    <div class="hero">
+      <h1 data-i18n="heroTitle">Your GitHub PR inbox,<br><span class="highlight">supercharged by AI</span></h1>
+      <p data-i18n="heroDesc">Stop drowning in pull requests. PR Focus prioritizes what needs your attention, summarizes every change, and drafts your review in one click — so you ship faster.</p>
+      <div class="hero-buttons">
+        <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" data-i18n="buyNowLaunch">
+          <span>🔥 Get PRO – Launch special</span>
+        </a>
+        <a href="#features" class="btn-outline" data-i18n="learnMore">Learn more ↓</a>
+        <a href="https://projekta2.github.io/projekta2-pr-focus-landing/pr-focus-demo.html" class="btn-outline" target="_blank">
+          <i class="fas fa-play-circle"></i> Live demo
+        </a>
+      </div>
+      <div class="launch-note">
+        <strong data-i18n="launchOffer">🔥 Launch offer:</strong> <span data-i18n="launchPrice">Regular $19 – Now $9.50 (50% off). Limited units. Price increases after launch.</span>
+      </div>
     </div>
 
-    <!-- Banner image (clean, not overlapping text) -->
+    <!-- Banner image -->
     <div class="banner-img fade-up">
       <img src="pr-focus-banner.png" alt="PR Focus Pro interface preview">
     </div>
@@ -511,8 +551,12 @@
     <div id="pricing" class="fade-up">
       <h2 class="section-title" data-i18n="pricingTitle">Simple, lifetime pricing</h2>
       <div class="pricing">
+        <div class="launch-badge">🔥 LAUNCH OFFER</div>
         <div class="pricing-header">
-          <div class="price">$9 <small>USD</small></div>
+          <div>
+            <span class="price-old">$19</span>
+            <span class="price">$9.50</span> <small>USD</small>
+          </div>
           <p data-i18n="pricingSub">One‑time payment. Lifetime access.</p>
         </div>
         <div class="pricing-features">
@@ -525,7 +569,7 @@
           </ul>
         </div>
         <div class="pricing-footer">
-          <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" data-i18n="buyNow">Get PRO – $9</a>
+          <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" data-i18n="buyNow">Get PRO – Launch special</a>
           <p style="margin-top: 12px; font-size: 0.8rem;" data-i18n="refundNote">30‑day money‑back guarantee</p>
         </div>
       </div>
@@ -562,7 +606,7 @@
   </div>
 
   <script>
-    // Translations (EN/ES)
+    // Translations (EN/ES) – updated with launch offer texts
     const translations = {
       en: {
         navFeatures: "Features",
@@ -598,7 +642,7 @@
         pro3: "One‑click draft reviews (approve/request changes)",
         pro4: "Full stats history & AI priority sorting",
         pro5: "All future updates",
-        buyNow: "Get PRO – $9",
+        buyNow: "Get PRO – Launch special",
         refundNote: "30‑day money‑back guarantee",
         freeTierNote: "The free tier includes multi‑account, sorting, export, and stale notifications.",
         faqTitle: "Frequently asked questions",
@@ -611,7 +655,9 @@
         faq4q: "What's the refund policy?",
         faq4a: "30‑day full refund, no questions asked. If it doesn't save you time, we'll return your money.",
         privacyLink: "Privacy Policy",
-        termsLink: "Terms of Service"
+        termsLink: "Terms of Service",
+        launchOffer: "🔥 Launch offer:",
+        launchPrice: "Regular $19 – Now $9.50 (50% off). Limited units. Price increases after launch."
       },
       es: {
         navFeatures: "Características",
@@ -647,7 +693,7 @@
         pro3: "Borradores con un clic (aprobar/solicitar cambios)",
         pro4: "Historial completo de estadísticas y orden prioritario IA",
         pro5: "Todas las actualizaciones futuras",
-        buyNow: "Obtener PRO – $9",
+        buyNow: "Obtener PRO – Oferta de lanzamiento",
         refundNote: "Garantía de devolución de 30 días",
         freeTierNote: "El nivel gratuito incluye multi‑cuenta, ordenación, exportación y notificaciones.",
         faqTitle: "Preguntas frecuentes",
@@ -660,7 +706,9 @@
         faq4q: "¿Cuál es la política de reembolso?",
         faq4a: "Reembolso completo en 30 días, sin preguntas. Si no te ahorra tiempo, te devolvemos el dinero.",
         privacyLink: "Política de Privacidad",
-        termsLink: "Términos de Servicio"
+        termsLink: "Términos de Servicio",
+        launchOffer: "🔥 Oferta de lanzamiento:",
+        launchPrice: "$19 regular – Ahora $9.50 (50% dto.). Unidades limitadas. El precio subirá después del lanzamiento."
       }
     };
 
