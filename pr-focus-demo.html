@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR Focus – Interactive Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg:#0a0c10; --surface:#111827; --surface2:#1e293b; --border:#2c3e50;
+  --accent:#f97316; --accent2:#fb923c; --text:#eef2ff; --muted:#94a3b8;
+  --green:#10b981; --red:#ef4444; --yellow:#f59e0b; --blue:#3b82f6;
+  --risk-high:#ef4444; --risk-med:#f59e0b; --risk-low:#10b981; --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#05070d;color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2rem 1rem;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,.08) 0%,transparent 70%);
+  pointer-events:none}
+
+/* ── Outer wrapper ── */
+.demo-wrapper{width:100%;max-width:780px;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+
+/* ── Header ── */
+.demo-header{text-align:center;position:relative}
+.demo-header h1{font-size:clamp(1.4rem,5vw,2rem);font-weight:700;letter-spacing:-0.02em;
+  background:linear-gradient(135deg,#fff 30%,var(--accent) 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-family:'Inter',sans-serif}
+.demo-header p{color:var(--muted);font-size:.85rem;margin-top:.4rem;font-family:'JetBrains Mono',monospace}
+
+/* Lang switcher */
+.lang-switcher{position:absolute;right:0;top:0;display:flex;gap:4px;align-items:center}
+.lang-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);
+  padding:4px 10px;border-radius:8px;font-size:.7rem;font-weight:700;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:all .2s}
+.lang-btn.active{background:rgba(249,115,22,.15);border-color:var(--accent);color:var(--accent)}
+
+/* ── Stage ── */
+.stage{width:100%;position:relative;border-radius:24px;overflow:hidden;background:var(--bg);
+  border:1px solid rgba(249,115,22,.2);
+  box-shadow:0 0 60px rgba(249,115,22,.08),0 32px 80px rgba(0,0,0,.6)}
+.timeline-bar{height:3px;background:var(--border);width:100%}
+.timeline-progress{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  width:0%;transition:width .1s linear}
+
+/* ── Popup chrome ── */
+.popup-chrome{background:#0d0f14;padding:0 0 1rem;min-height:480px}
+.popup-topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 14px 10px;border-bottom:1px solid var(--border)}
+.popup-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;letter-spacing:-.01em}
+.popup-logo svg{width:24px;height:24px;border-radius:6px}
+.popup-tabs{display:flex;gap:2px;background:var(--surface);border-radius:10px;padding:3px}
+.tab{padding:5px 10px;border-radius:8px;font-size:.72rem;font-weight:600;color:var(--muted);
+  cursor:pointer;transition:all .25s;white-space:nowrap}
+.tab.active{background:var(--accent);color:white}
+.popup-refresh{width:28px;height:28px;border-radius:8px;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);cursor:pointer}
+
+/* ── Toolbar ── */
+.toolbar{display:flex;gap:8px;padding:10px 14px 8px}
+.search-box{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:7px 10px;font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sort-select{background:var(--surface);border:1px solid var(--accent);border-radius:10px;
+  padding:7px 10px;font-size:.72rem;color:var(--accent);font-weight:600;white-space:nowrap}
+
+/* ── PR Cards ── */
+.pr-list{display:flex;flex-direction:column;gap:8px;padding:0 14px}
+.pr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:12px 14px;transition:all .4s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.pr-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  border-radius:3px 0 0 3px;background:var(--risk-color,var(--border));transition:background .3s}
+.pr-card.risk-high{--risk-color:var(--risk-high);border-color:rgba(239,68,68,.25)}
+.pr-card.risk-med {--risk-color:var(--risk-med);border-color:rgba(245,158,11,.2)}
+.pr-card.risk-low {--risk-color:var(--risk-low);border-color:rgba(16,185,129,.2)}
+.pr-card.highlighted{border-color:var(--accent);
+  box-shadow:0 0 0 2px rgba(249,115,22,.2),0 8px 24px rgba(249,115,22,.1);transform:translateX(4px)}
+
+.pr-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.pr-title{font-size:.82rem;font-weight:600;line-height:1.4;flex:1}
+.risk-badge{display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;
+  font-size:.68rem;font-weight:700;white-space:nowrap;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.risk-badge.high{background:rgba(239,68,68,.15);color:var(--risk-high);border:1px solid rgba(239,68,68,.3)}
+.risk-badge.med {background:rgba(245,158,11,.15);color:var(--risk-med);border:1px solid rgba(245,158,11,.3)}
+.risk-badge.low {background:rgba(16,185,129,.15);color:var(--risk-low);border:1px solid rgba(16,185,129,.3)}
+
+.pr-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.meta-tag{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:4px;
+  font-family:'JetBrains Mono',monospace}
+.ci-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:20px;
+  font-size:.65rem;font-weight:600;font-family:'JetBrains Mono',monospace}
+.ci-success{background:rgba(16,185,129,.15);color:var(--green)}
+.ci-failure{background:rgba(239,68,68,.15);color:var(--red)}
+.ci-pending{background:rgba(245,158,11,.15);color:var(--yellow)}
+
+/* Action buttons */
+.pr-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.btn{padding:5px 10px;border-radius:8px;border:none;font-size:.68rem;font-weight:600;
+  cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-approve{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.btn-changes{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.btn-comment{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
+.btn-draft  {background:rgba(249,115,22,.15);color:var(--accent);border:1px solid rgba(249,115,22,.3)}
+.btn-summary{background:rgba(249,115,22,.15);color:var(--accent);border:1px solid rgba(249,115,22,.3)}
+.btn.clicking{transform:scale(.93);filter:brightness(1.3)}
+
+/* AI Summary block */
+.ai-summary-block{display:none;margin-top:10px;background:rgba(249,115,22,.06);
+  border:1px solid rgba(249,115,22,.2);border-radius:10px;padding:10px 12px}
+.ai-summary-block.visible{display:block}
+.ai-summary-label{font-size:.65rem;color:var(--accent);font-weight:700;margin-bottom:5px;letter-spacing:.05em}
+.ai-summary-text{font-size:.73rem;color:var(--text);line-height:1.6;font-family:'JetBrains Mono',monospace}
+
+/* Risk reasons */
+.risk-reasons{display:none;margin-top:8px;background:rgba(239,68,68,.07);
+  border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:8px 12px}
+.risk-reasons.visible{display:block}
+.risk-reasons-label{font-size:.62rem;color:var(--red);font-weight:700;margin-bottom:5px;letter-spacing:.05em}
+.risk-reason-item{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:6px;
+  margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.risk-reason-item::before{content:'•';color:var(--red)}
+
+/* ── Draft overlay ── */
+.draft-overlay{display:none;position:absolute;inset:0;background:rgba(10,12,16,.97);
+  border-radius:var(--r);padding:16px 14px;z-index:50;flex-direction:column;gap:12px}
+.draft-overlay.visible{display:flex}
+.draft-header{display:flex;align-items:center;justify-content:space-between}
+.draft-title{font-size:.85rem;font-weight:700;color:var(--accent)}
+.draft-close{width:24px;height:24px;background:var(--surface2);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);cursor:pointer}
+.draft-textarea{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:10px 12px;font-size:.72rem;color:var(--text);line-height:1.6;resize:none;
+  font-family:'JetBrains Mono',monospace;min-height:120px}
+.draft-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-send   {background:var(--accent);color:white}
+.btn-comment2{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
+.btn-dismiss{background:transparent;color:var(--muted);border:1px solid var(--border)}
+
+/* ── Stats panel ── */
+.stats-panel{padding:12px 14px;display:none}
+.stats-panel.active{display:block}
+.stats-kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:10px 12px;text-align:center}
+.kpi-value{font-size:1.3rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.kpi-label{font-size:.6rem;color:var(--muted);margin-top:3px;line-height:1.3}
+
+/* Chart */
+.chart-container{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.chart-title{font-size:.72rem;color:var(--muted);margin-bottom:12px;font-weight:600}
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:80px}
+.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
+  height:100%;justify-content:flex-end;position:relative}
+.chart-bar{width:100%;background:rgba(249,115,22,.3);border-radius:4px 4px 0 0;
+  transition:height .8s cubic-bezier(.34,1.56,.64,1);height:0;position:relative}
+.chart-bar.filled{background:linear-gradient(180deg,var(--accent),rgba(249,115,22,.4))}
+.chart-label{font-size:.58rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+/* Chart tooltip */
+.bar-tooltip{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  background:var(--surface2);border:1px solid var(--border);border-radius:6px;
+  padding:3px 6px;font-size:.6rem;font-weight:700;color:var(--text);
+  font-family:'JetBrains Mono',monospace;white-space:nowrap;pointer-events:none;
+  opacity:0;transition:opacity .2s;z-index:10}
+.chart-col:hover .bar-tooltip{opacity:1}
+
+.stats-row{display:flex;gap:8px;margin-top:8px}
+.stat-item{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:8px 12px;display:flex;align-items:center;gap:8px}
+.stat-icon{font-size:1rem}
+.stat-info{font-size:.68rem}
+.stat-info strong{display:block;color:var(--text);font-size:.8rem}
+.stat-info span{color:var(--muted)}
+
+/* ── Settings panel ── */
+.settings-panel{padding:12px 14px;display:none}
+.settings-panel.active{display:block}
+.settings-section{background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.settings-title{font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:10px}
+.settings-field{margin-bottom:8px}
+.settings-label{font-size:.62rem;color:var(--muted);margin-bottom:4px;display:block}
+.settings-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:7px 10px;font-size:.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.provider-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.provider-tag{padding:3px 8px;border-radius:20px;font-size:.62rem;font-weight:600;
+  background:rgba(249,115,22,.1);color:var(--accent);border:1px solid rgba(249,115,22,.2)}
+.byok-note{font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:5px;margin-top:8px}
+.byok-note .lock-icon{color:var(--green)}
+
+/* ── My PRs ── */
+.my-prs-panel{padding:0 14px;display:none}
+.my-prs-panel.active{display:block}
+
+/* ── Scene caption ── */
+.scene-caption{position:absolute;bottom:14px;left:14px;right:14px;
+  background:rgba(10,12,16,.9);border:1px solid rgba(249,115,22,.3);border-radius:12px;
+  padding:8px 14px;font-size:.72rem;color:var(--text);line-height:1.5;backdrop-filter:blur(8px);
+  opacity:0;transform:translateY(8px);transition:all .4s ease;z-index:20}
+.scene-caption.visible{opacity:1;transform:translateY(0)}
+.scene-caption strong{color:var(--accent)}
+
+/* ── CTA overlay ── */
+.cta-overlay{display:none;position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(10,12,16,.97) 0%,rgba(20,15,10,.98) 100%);
+  border-radius:24px;align-items:center;justify-content:center;flex-direction:column;
+  text-align:center;gap:1rem;padding:2rem;z-index:100}
+.cta-overlay.visible{display:flex}
+.cta-badge{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.4);color:var(--accent);
+  padding:5px 14px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase}
+.cta-title{font-size:clamp(1.4rem,5vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.cta-title span{color:var(--accent)}
+.cta-price{font-size:.85rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.cta-btn{background:var(--accent);color:white;border:none;padding:12px 28px;border-radius:12px;
+  font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;
+  transition:all .2s;text-decoration:none;display:inline-block}
+.cta-btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.cta-btn.secondary{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text)}
+.cta-btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.cta-free-note{font-size:.72rem;color:var(--muted);max-width:340px;line-height:1.5}
+.cta-free-note strong{color:var(--text)}
+
+/* ── Dots & controls ── */
+.scene-dots{display:flex;gap:8px;align-items:center}
+.scene-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all .3s}
+.scene-dot.active{background:var(--accent);width:18px;border-radius:3px}
+.controls{display:flex;align-items:center;justify-content:space-between;width:100%;
+  gap:1rem;flex-wrap:wrap}
+.ctrl-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  padding:8px 16px;border-radius:10px;font-size:.78rem;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px}
+.ctrl-btn:hover{border-color:var(--accent);color:var(--accent)}
+.ctrl-btn.accent-btn{background:var(--accent);border-color:var(--accent);color:white}
+.ctrl-btn.accent-btn:hover{background:var(--accent2)}
+.scroll-hint{font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:5px;
+  justify-content:center}
+
+/* ── Animations ── */
+@keyframes pulse-ring{
+  0%{box-shadow:0 0 0 0 rgba(249,115,22,.4)}
+  70%{box-shadow:0 0 0 8px rgba(249,115,22,0)}
+  100%{box-shadow:0 0 0 0 rgba(249,115,22,0)}
+}
+.pulsing{animation:pulse-ring 1.5s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinning{animation:spin .6s linear}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn .4s ease forwards}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cursor{animation:blink .7s infinite;color:var(--accent)}
+
+@media(max-width:500px){
+  .popup-tabs{gap:1px}
+  .tab{padding:4px 7px;font-size:.64rem}
+  .stats-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-btns{flex-direction:column;align-items:center}
+  .lang-switcher{position:static;margin-top:.5rem;justify-content:center}
+  .demo-header{display:flex;flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<div class="demo-wrapper">
+
+  <!-- ── Header ── -->
+  <div class="demo-header">
+    <h1 id="demoTitle">PR Focus <span style="color:var(--accent)">Pro</span></h1>
+    <p id="demoSubtitle">AI‑powered PR reviews — zero installation required</p>
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btnEN">EN</button>
+      <button class="lang-btn" id="btnES">ES</button>
+    </div>
+  </div>
+
+  <!-- ── STAGE ── -->
+  <div class="stage" id="stage">
+    <div class="timeline-bar"><div class="timeline-progress" id="timelineProgress"></div></div>
+
+    <div class="popup-chrome">
+
+      <!-- Topbar -->
+      <div class="popup-topbar">
+        <div class="popup-logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="url(#logoGrad)"/>
+            <path d="M7 8.5H17M7 12H14M7 15.5H17" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="17" cy="8.5" r="1.5" fill="#fff"/>
+            <circle cx="17" cy="15.5" r="1.5" fill="#fff"/>
+            <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#f97316"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs>
+          </svg>
+          <span>PR Focus</span>
+        </div>
+        <div class="popup-tabs" id="tabBar">
+          <div class="tab active" data-tab="inbox" id="tabInbox">Inbox <span id="inboxBadge" style="background:var(--accent);color:white;border-radius:10px;padding:0 5px;font-size:.6rem;margin-left:3px">3</span></div>
+          <div class="tab" data-tab="my" id="tabMy">My PRs</div>
+          <div class="tab" data-tab="stats" id="tabStats">Stats</div>
+          <div class="tab" data-tab="settings" id="tabSettings">Settings</div>
+        </div>
+        <div class="popup-refresh" id="refreshBtn"><i class="fa-solid fa-rotate-right"></i></div>
+      </div>
+
+      <!-- ── INBOX ── -->
+      <div id="inboxPanel">
+        <div class="toolbar">
+          <div class="search-box" id="searchBox"><i class="fa-solid fa-magnifying-glass" style="font-size:.65rem;color:var(--muted)"></i> <span id="searchPlaceholder">Filter PRs…</span></div>
+          <div class="sort-select" id="sortSelect">⬆ Priority</div>
+        </div>
+        <div class="pr-list" id="prList">
+
+          <!-- PR 1 -->
+          <div class="pr-card risk-high" id="pr1">
+            <div class="pr-header">
+              <div class="pr-title" id="pr1Title">refactor: migrate auth middleware to JWT RS256</div>
+              <div class="risk-badge high"><i class="fa-solid fa-circle-exclamation"></i> 87</div>
+            </div>
+            <div class="pr-meta">
+              <span class="meta-tag"><i class="fa-solid fa-code-branch"></i> acme/backend</span>
+              <span class="meta-tag"><i class="fa-regular fa-clock"></i> <span id="pr1Age">9 days</span></span>
+              <span class="meta-tag"><i class="fa-solid fa-user"></i> @elena</span>
+              <span class="ci-pill ci-failure"><i class="fa-solid fa-xmark"></i> CI fail</span>
+            </div>
+            <div class="risk-reasons" id="riskReasons1">
+              <div class="risk-reasons-label" id="riskReasonsLabel">⚠ Risk factors</div>
+              <div class="risk-reason-item" id="rr1">CI pipeline failing</div>
+              <div class="risk-reason-item" id="rr2">Touches authentication layer</div>
+              <div class="risk-reason-item" id="rr3">9 days without review</div>
+            </div>
+            <div class="ai-summary-block" id="aiSummary1">
+              <div class="ai-summary-label" id="aiSummaryLabel1">💡 AI SUMMARY</div>
+              <div class="ai-summary-text" id="aiSummaryText1"></div>
+            </div>
+            <div class="pr-actions">
+              <button class="btn btn-approve" id="btn1Approve">✅ <span id="lbl1Approve">Approve</span></button>
+              <button class="btn btn-changes" id="btn1Changes">🔄 <span id="lbl1Changes">Changes</span></button>
+              <button class="btn btn-draft" id="draftBtn1">✨ <span id="lbl1Draft">Draft</span></button>
+              <button class="btn btn-summary">💡 <span id="lbl1Summary">Summary</span></button>
+            </div>
+          </div>
+
+          <!-- PR 2 -->
+          <div class="pr-card risk-med" id="pr2">
+            <div class="pr-header">
+              <div class="pr-title">feat: add Stripe webhook endpoint for subscription events</div>
+              <div class="risk-badge med"><i class="fa-solid fa-triangle-exclamation"></i> 48</div>
+            </div>
+            <div class="pr-meta">
+              <span class="meta-tag"><i class="fa-solid fa-code-branch"></i> acme/payments</span>
+              <span class="meta-tag"><i class="fa-regular fa-clock"></i> 4 days</span>
+              <span class="meta-tag"><i class="fa-solid fa-user"></i> @marco</span>
+              <span class="ci-pill ci-pending"><i class="fa-solid fa-hourglass-half"></i> pending</span>
+            </div>
+            <div class="pr-actions">
+              <button class="btn btn-approve">✅ <span id="lbl2Approve">Approve</span></button>
+              <button class="btn btn-changes">🔄 <span id="lbl2Changes">Changes</span></button>
+              <button class="btn btn-draft">✨ <span id="lbl2Draft">Draft</span></button>
+              <button class="btn btn-summary">💡 <span id="lbl2Summary">Summary</span></button>
+            </div>
+          </div>
+
+          <!-- PR 3 -->
+          <div class="pr-card risk-low" id="pr3">
+            <div class="pr-header">
+              <div class="pr-title">docs: update README with new deployment instructions</div>
+              <div class="risk-badge low"><i class="fa-solid fa-circle-check"></i> 12</div>
+            </div>
+            <div class="pr-meta">
+              <span class="meta-tag"><i class="fa-solid fa-code-branch"></i> acme/docs</span>
+              <span class="meta-tag"><i class="fa-regular fa-clock"></i> <span id="pr3Age">1 day</span></span>
+              <span class="meta-tag"><i class="fa-solid fa-user"></i> @sofia</span>
+              <span class="ci-pill ci-success"><i class="fa-solid fa-check"></i> success</span>
+            </div>
+            <div class="pr-actions">
+              <button class="btn btn-approve">✅ <span id="lbl3Approve">Approve</span></button>
+              <button class="btn btn-changes">🔄 <span id="lbl3Changes">Changes</span></button>
+              <button class="btn btn-draft">✨ <span id="lbl3Draft">Draft</span></button>
+              <button class="btn btn-summary">💡 <span id="lbl3Summary">Summary</span></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── MY PRs ── -->
+      <div id="myPrsPanel" class="my-prs-panel">
+        <div class="toolbar">
+          <div class="search-box"><i class="fa-solid fa-magnifying-glass" style="font-size:.65rem;color:var(--muted)"></i> <span id="searchMyPlaceholder">Filter my PRs…</span></div>
+        </div>
+        <div class="pr-list">
+          <div class="pr-card risk-med" id="myPr1">
+            <div class="pr-header">
+              <div class="pr-title">feat: dark mode toggle for dashboard</div>
+              <div class="risk-badge med">🟡 42</div>
+            </div>
+            <div class="pr-meta">
+              <span class="meta-tag"><i class="fa-solid fa-code-branch"></i> acme/frontend</span>
+              <span class="meta-tag"><i class="fa-regular fa-clock"></i> 2 days</span>
+              <span class="ci-pill ci-success"><i class="fa-solid fa-check"></i> success</span>
+            </div>
+            <div class="ai-summary-block" id="myAiSummary">
+              <div class="ai-summary-label" id="myAiLabel">💡 AI SUMMARY</div>
+              <div class="ai-summary-text" id="myAiSummaryText"></div>
+            </div>
+            <div class="pr-actions">
+              <button class="btn btn-summary" id="mySummaryBtn">💡 <span id="lblMySummary">Summary</span></button>
+              <button class="btn btn-comment">💬 <span id="lblMyComment">Comment</span></button>
+            </div>
+          </div>
+          <div class="pr-card risk-low">
+            <div class="pr-header">
+              <div class="pr-title">chore: bump dependencies to latest stable</div>
+              <div class="risk-badge low">🟢 8</div>
+            </div>
+            <div class="pr-meta">
+              <span class="meta-tag"><i class="fa-solid fa-code-branch"></i> acme/backend</span>
+              <span class="meta-tag"><i class="fa-regular fa-clock"></i> <span id="todayLabel">today</span></span>
+              <span class="ci-pill ci-success"><i class="fa-solid fa-check"></i> success</span>
+            </div>
+            <div class="pr-actions">
+              <button class="btn btn-summary">💡 <span id="lblMySummary2">Summary</span></button>
+              <button class="btn btn-comment">💬 <span id="lblMyComment2">Comment</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STATS ── -->
+      <div id="statsPanel" class="stats-panel">
+        <div class="stats-kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-value" id="kpi1">0</div>
+            <div class="kpi-label" id="kpiLabel1">📦 Pending reviews</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-value" id="kpi2" style="color:var(--red)">0</div>
+            <div class="kpi-label" id="kpiLabel2">🔴 High risk PRs</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-value" id="kpi3" style="color:var(--accent)">0</div>
+            <div class="kpi-label" id="kpiLabel3">✨ AI enriched</div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-title" id="chartTitle">Weekly PR activity</div>
+          <div class="chart-bars" id="chartBars">
+            <div class="chart-col"><div class="chart-bar" id="bar0"><div class="bar-tooltip" id="tip0">4</div></div><div class="chart-label" id="dayLabel0">Mon</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar1"><div class="bar-tooltip" id="tip1">6</div></div><div class="chart-label" id="dayLabel1">Tue</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar2"><div class="bar-tooltip" id="tip2">3</div></div><div class="chart-label" id="dayLabel2">Wed</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar3"><div class="bar-tooltip" id="tip3">8</div></div><div class="chart-label" id="dayLabel3">Thu</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar4"><div class="bar-tooltip" id="tip4">7</div></div><div class="chart-label" id="dayLabel4">Fri</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar5"><div class="bar-tooltip" id="tip5">2</div></div><div class="chart-label" id="dayLabel5">Sat</div></div>
+            <div class="chart-col"><div class="chart-bar" id="bar6"><div class="bar-tooltip" id="tip6">5</div></div><div class="chart-label" id="dayLabel6">Sun</div></div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-info"><strong>4.2h</strong><span id="statAvg">Avg first review</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info"><strong>18</strong><span id="statClosed">PRs closed</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">🟡</div>
+            <div class="stat-info"><strong>2</strong><span id="statMed">Medium risk</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div id="settingsPanel" class="settings-panel">
+        <div class="settings-section">
+          <div class="settings-title">✨ <span id="settingsAiTitle">AI Provider</span> <span style="background:var(--accent);color:white;font-size:.6rem;padding:2px 7px;border-radius:10px;margin-left:6px">PRO</span></div>
+          <div class="settings-field">
+            <label class="settings-label" id="settingsKeyLabel">API Key (stored locally)</label>
+            <div class="settings-input">sk-••••••••••••••••••••••••</div>
+          </div>
+          <div class="settings-field">
+            <label class="settings-label" id="settingsEndpointLabel">Endpoint</label>
+            <div class="settings-input">https://api.openai.com/v1/chat/completions</div>
+          </div>
+          <div class="settings-field">
+            <label class="settings-label" id="settingsProviderLabel">Compatible providers</label>
+            <div class="provider-tags" id="providerTags">
+              <span class="provider-tag">OpenAI</span>
+              <span class="provider-tag">Groq</span>
+              <span class="provider-tag">Mistral</span>
+              <span class="provider-tag">Together AI</span>
+              <span class="provider-tag">Ollama (local)</span>
+              <span class="provider-tag">Azure OpenAI</span>
+            </div>
+          </div>
+          <div class="byok-note">
+            <span class="lock-icon"><i class="fa-solid fa-lock"></i></span>
+            <span id="byokNote">Your API key stays in Chrome storage — never sent to our servers. BYOK.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRAFT OVERLAY -->
+      <div class="draft-overlay" id="draftOverlay">
+        <div class="draft-header">
+          <div class="draft-title">✨ <span id="draftTitleText">AI Draft Review</span> <span style="font-size:.65rem;color:var(--muted);font-weight:400" id="draftSubtype">(REQUEST CHANGES)</span></div>
+          <div class="draft-close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <textarea class="draft-textarea" id="draftText" readonly></textarea>
+        <div class="draft-actions">
+          <button class="btn btn-send" id="sendReviewBtn">📤 <span id="lblSendReview">Send review</span></button>
+          <button class="btn btn-comment2">💬 <span id="lblPostComment">Post comment</span></button>
+          <button class="btn btn-dismiss">↩ <span id="lblDismiss">Dismiss</span></button>
+        </div>
+        <div style="font-size:.62rem;color:var(--muted);line-height:1.5" id="draftEditNote">
+          <i class="fa-solid fa-pencil" style="color:var(--accent)"></i> Editable before sending · Submitted directly to GitHub
+        </div>
+      </div>
+
+    </div><!-- /popup-chrome -->
+
+    <div class="scene-caption" id="sceneCaption"></div>
+
+    <!-- CTA overlay -->
+    <div class="cta-overlay" id="ctaOverlay">
+      <div class="cta-badge" id="ctaBadge">Available for Chrome · v2.0</div>
+      <div class="cta-title" id="ctaTitle">Get PR Focus <span>Pro</span><br>Review smarter, not harder.</div>
+      <div class="cta-price" id="ctaPrice">$9 one-time · lifetime updates · no subscription</div>
+      <div class="cta-btns">
+        <a class="cta-btn" href="https://projekta2.gumroad.com/l/PRFocusAIPro" target="_blank" id="ctaBtnPro">Get PRO →</a>
+        <a class="cta-btn secondary" href="https://chrome.google.com/webstore" target="_blank" id="ctaBtnFree">Install Free</a>
+      </div>
+      <div class="cta-free-note" id="ctaFreeNote">
+        <strong>Free tier</strong> includes multi-account support, CSV/PDF export, stale PR alerts &amp; webhook notifications.
+      </div>
+    </div>
+
+  </div><!-- /stage -->
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="scene-dots" id="sceneDots">
+      <div class="scene-dot active"></div>
+      <div class="scene-dot"></div>
+      <div class="scene-dot"></div>
+      <div class="scene-dot"></div>
+      <div class="scene-dot"></div>
+      <div class="scene-dot"></div>
+      <div class="scene-dot"></div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="ctrl-btn" id="pauseBtn"><i class="fa-solid fa-pause"></i> <span id="pauseLabel">Pause</span></button>
+      <button class="ctrl-btn accent-btn" id="replayBtn"><i class="fa-solid fa-rotate-left"></i> <span id="replayLabel">Replay</span></button>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--accent)"></i>
+    <span id="scrollHint">Install free · Chrome Web Store</span>
+  </div>
+
+</div>
+
+<script>
+// ── I18N ──────────────────────────────────────────────────────────────────────
+const STRINGS = {
+  en: {
+    demoTitle: 'PR Focus Pro',
+    demoSubtitle: 'AI‑powered PR reviews — zero installation required',
+    tabInbox: 'Inbox', tabMy: 'My PRs', tabStats: 'Stats', tabSettings: 'Settings',
+    searchPlaceholder: 'Filter PRs…', searchMyPlaceholder: 'Filter my PRs…',
+    pr1Age: '9 days', pr3Age: '1 day', todayLabel: 'today',
+    riskReasonsLabel: '⚠ Risk factors',
+    rr1: 'CI pipeline failing', rr2: 'Touches authentication layer', rr3: '9 days without review',
+    aiSummaryLabel1: '💡 AI SUMMARY', myAiLabel: '💡 AI SUMMARY',
+    lbl1Approve:'Approve', lbl1Changes:'Changes', lbl1Draft:'Draft', lbl1Summary:'Summary',
+    lbl2Approve:'Approve', lbl2Changes:'Changes', lbl2Draft:'Draft', lbl2Summary:'Summary',
+    lbl3Approve:'Approve', lbl3Changes:'Changes', lbl3Draft:'Draft', lbl3Summary:'Summary',
+    lblMySummary:'Summary', lblMyComment:'Comment', lblMySummary2:'Summary', lblMyComment2:'Comment',
+    kpiLabel1:'📦 Pending reviews', kpiLabel2:'🔴 High risk PRs', kpiLabel3:'✨ AI enriched',
+    chartTitle:'Weekly PR activity',
+    dayLabel0:'Mon',dayLabel1:'Tue',dayLabel2:'Wed',dayLabel3:'Thu',dayLabel4:'Fri',dayLabel5:'Sat',dayLabel6:'Sun',
+    statAvg:'Avg first review', statClosed:'PRs closed', statMed:'Medium risk',
+    settingsAiTitle:'AI Provider', settingsKeyLabel:'API Key (stored locally)',
+    settingsEndpointLabel:'Endpoint', settingsProviderLabel:'Compatible providers',
+    byokNote:'Your API key stays in Chrome storage — never sent to our servers. BYOK.',
+    draftTitleText:'AI Draft Review', draftSubtype:'(REQUEST CHANGES)',
+    lblSendReview:'Send review', lblPostComment:'Post comment', lblDismiss:'Dismiss',
+    draftEditNote:'Editable before sending · Submitted directly to GitHub',
+    ctaBadge:'Available for Chrome · v2.0',
+    ctaTitle:'Get PR Focus <span>Pro</span><br>Review smarter, not harder.',
+    ctaPrice:'$9 one-time · lifetime updates · no subscription',
+    ctaBtnPro:'Get PRO →', ctaBtnFree:'Install Free',
+    ctaFreeNote:'<strong>Free tier</strong> includes multi-account support, CSV/PDF export, stale PR alerts &amp; webhook notifications.',
+    pauseLabel:'Pause', replayLabel:'Replay',
+    scrollHint:'Install free · Chrome Web Store',
+    cap1a:'<strong>Scene 1 — Smart Inbox</strong> · PRs auto-sorted by hybrid priority score',
+    cap1b:'<strong>Priority sort</strong>: <code style="color:var(--accent)">CI fail × 100 &nbsp;+&nbsp; age × 10 &nbsp;+&nbsp; AI risk × 2</code>',
+    cap2a:'<strong>Scene 2 — AI Risk Score</strong> · Analyzes diff → risk 0-100 + reasons',
+    cap2b:'<strong>💡 AI Summary</strong> · Plain-English explanation generated from the diff',
+    cap3:'<strong>Scene 3 — AI Draft Review</strong> · One click → professional review, editable before send',
+    cap4:'<strong>Scene 4 — My PRs</strong> · Track your own open PRs · AI neutral comment',
+    cap5:'<strong>Scene 5 — Analytics</strong> · Track your review velocity and risk distribution',
+    cap6:'<strong>Scene 6 — BYOK AI</strong> · Any OpenAI-compatible provider · key stays local, private',
+    tw_summary:'Migrates the auth layer from HS256 to RS256 JWT, replacing the shared secret with an asymmetric key pair. This significantly hardens token security but touches every protected route — high blast radius if something breaks.',
+    tw_draft:`Thank you for this important security upgrade. Before approving, I'd like to flag a few concerns:\n\n1. The RS256 key rotation strategy isn't documented — what's the plan if the private key is compromised?\n2. Several integration tests are failing in CI; these should pass before merging to prevent auth regressions.\n3. Consider adding a feature flag to roll back to HS256 during the transition period.\n\nPlease address these points and re-request review.`,
+    tw_mySummary:'Adds a user-facing dark mode toggle to the dashboard settings panel. Minimal risk — pure UI change with no backend impact.',
+  },
+  es: {
+    demoTitle: 'PR Focus Pro',
+    demoSubtitle: 'Revisiones de código con IA — sin instalación',
+    tabInbox: 'Bandeja', tabMy: 'Mis PRs', tabStats: 'Estadísticas', tabSettings: 'Ajustes',
+    searchPlaceholder: 'Filtrar PRs…', searchMyPlaceholder: 'Filtrar mis PRs…',
+    pr1Age: '9 días', pr3Age: '1 día', todayLabel: 'hoy',
+    riskReasonsLabel: '⚠ Factores de riesgo',
+    rr1: 'CI en fallo', rr2: 'Modifica capa de autenticación', rr3: '9 días sin revisión',
+    aiSummaryLabel1: '💡 RESUMEN IA', myAiLabel: '💡 RESUMEN IA',
+    lbl1Approve:'Aprobar', lbl1Changes:'Cambios', lbl1Draft:'Borrador', lbl1Summary:'Resumen',
+    lbl2Approve:'Aprobar', lbl2Changes:'Cambios', lbl2Draft:'Borrador', lbl2Summary:'Resumen',
+    lbl3Approve:'Aprobar', lbl3Changes:'Cambios', lbl3Draft:'Borrador', lbl3Summary:'Resumen',
+    lblMySummary:'Resumen', lblMyComment:'Comentar', lblMySummary2:'Resumen', lblMyComment2:'Comentar',
+    kpiLabel1:'📦 Revisiones pendientes', kpiLabel2:'🔴 PRs alto riesgo', kpiLabel3:'✨ Enriquecidos IA',
+    chartTitle:'Actividad semanal de PRs',
+    dayLabel0:'Lun',dayLabel1:'Mar',dayLabel2:'Mié',dayLabel3:'Jue',dayLabel4:'Vie',dayLabel5:'Sáb',dayLabel6:'Dom',
+    statAvg:'Tiempo medio revisión', statClosed:'PRs cerrados', statMed:'Riesgo medio',
+    settingsAiTitle:'Proveedor IA', settingsKeyLabel:'Clave API (almacenada localmente)',
+    settingsEndpointLabel:'Endpoint', settingsProviderLabel:'Proveedores compatibles',
+    byokNote:'Tu clave API se guarda en Chrome storage — nunca se envía a nuestros servidores. BYOK.',
+    draftTitleText:'Borrador IA', draftSubtype:'(SOLICITAR CAMBIOS)',
+    lblSendReview:'Enviar revisión', lblPostComment:'Publicar comentario', lblDismiss:'Descartar',
+    draftEditNote:'Editable antes de enviar · Se publica directamente en GitHub',
+    ctaBadge:'Disponible para Chrome · v2.0',
+    ctaTitle:'Obtén PR Focus <span>Pro</span><br>Revisa más listo, no más duro.',
+    ctaPrice:'$9 pago único · actualizaciones de por vida · sin suscripción',
+    ctaBtnPro:'Obtener PRO →', ctaBtnFree:'Instalar gratis',
+    ctaFreeNote:'La versión <strong>gratuita</strong> incluye multi-cuenta, exportar CSV/PDF, alertas de PRs obsoletos y notificaciones via webhook.',
+    pauseLabel:'Pausar', replayLabel:'Reiniciar',
+    scrollHint:'Instalar gratis · Chrome Web Store',
+    cap1a:'<strong>Escena 1 — Bandeja inteligente</strong> · PRs ordenados automáticamente por puntuación híbrida',
+    cap1b:'<strong>Orden por prioridad</strong>: <code style="color:var(--accent)">CI fallo × 100 &nbsp;+&nbsp; edad × 10 &nbsp;+&nbsp; riesgo IA × 2</code>',
+    cap2a:'<strong>Escena 2 — Puntuación de riesgo IA</strong> · Analiza el diff → riesgo 0-100 + razones',
+    cap2b:'<strong>💡 Resumen IA</strong> · Explicación en lenguaje natural generada desde el diff',
+    cap3:'<strong>Escena 3 — Borrador de revisión IA</strong> · Un clic → revisión profesional, editable antes de enviar',
+    cap4:'<strong>Escena 4 — Mis PRs</strong> · Sigue tus propios PRs · comentario neutro con IA',
+    cap5:'<strong>Escena 5 — Analíticas</strong> · Sigue tu velocidad de revisión y distribución de riesgos',
+    cap6:'<strong>Escena 6 — BYOK IA</strong> · Cualquier proveedor compatible con OpenAI · clave permanece local',
+    tw_summary:'Migra la capa de autenticación de HS256 a RS256 JWT, reemplazando el secreto compartido por un par de claves asimétricas. Refuerza considerablemente la seguridad de los tokens, pero toca todas las rutas protegidas — alto riesgo de rotura si algo falla.',
+    tw_draft:`Gracias por esta importante mejora de seguridad. Antes de aprobar, quiero señalar algunas preocupaciones:\n\n1. La estrategia de rotación de claves RS256 no está documentada — ¿qué plan hay si la clave privada se ve comprometida?\n2. Hay tests de integración fallando en CI; deben pasar antes del merge para evitar regresiones en la autenticación.\n3. Considera añadir un feature flag para volver a HS256 durante la transición.\n\nPor favor, aborda estos puntos y vuelve a solicitar revisión.`,
+    tw_mySummary:'Añade un interruptor de modo oscuro en el panel de ajustes del dashboard. Riesgo mínimo — cambio puramente visual sin impacto en el backend.',
+  }
+};
+
+let lang = 'en';
+
+function applyLang(l) {
+  lang = l;
+  const s = STRINGS[l];
+  const ids = Object.keys(s).filter(k => !k.startsWith('cap') && !k.startsWith('tw_') && k !== 'ctaTitle' && k !== 'ctaFreeNote');
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = s[id];
+  });
+  ['ctaTitle','ctaFreeNote'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = s[id];
+  });
+  document.getElementById('tabInbox').innerHTML = s.tabInbox + ' <span id="inboxBadge" style="background:var(--accent);color:white;border-radius:10px;padding:0 5px;font-size:.6rem;margin-left:3px">3</span>';
+  document.getElementById('btnEN').classList.toggle('active', l === 'en');
+  document.getElementById('btnES').classList.toggle('active', l === 'es');
+}
+
+document.getElementById('btnEN').addEventListener('click', () => { applyLang('en'); runDemo(); });
+document.getElementById('btnES').addEventListener('click', () => { applyLang('es'); runDemo(); });
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+let timers = [];
+let paused = false;
+let currentScene = 0;
+const TOTAL_DURATION = 57000;
+let startTime = null;
+let rafId = null;
+
+function delay(ms) { return new Promise(resolve => { const t = setTimeout(resolve, ms); timers.push(t); }); }
+function clearAllTimers() { timers.forEach(clearTimeout); timers = []; if(rafId) cancelAnimationFrame(rafId); }
+function s(key) { return STRINGS[lang][key] || STRINGS.en[key] || ''; }
+function setCaption(html, show=true) { const el = document.getElementById('sceneCaption'); if (show) { el.innerHTML = html; el.classList.add('visible'); } else { el.classList.remove('visible'); } }
+function setScene(n) { currentScene = n; document.querySelectorAll('.scene-dot').forEach((d,i) => d.classList.toggle('active', i===n)); }
+function setTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab===name));
+  document.getElementById('inboxPanel').style.display    = name==='inbox'    ? 'block':'none';
+  document.getElementById('myPrsPanel').style.display    = name==='my'       ? 'block':'none';
+  document.getElementById('statsPanel').style.display    = name==='stats'    ? 'block':'none';
+  document.getElementById('settingsPanel').style.display = name==='settings' ? 'block':'none';
+  document.getElementById('myPrsPanel').classList.toggle('active',    name==='my');
+  document.getElementById('statsPanel').classList.toggle('active',    name==='stats');
+  document.getElementById('settingsPanel').classList.toggle('active', name==='settings');
+}
+async function typewrite(elementId, text, speed=22) {
+  const el = document.getElementById(elementId);
+  el.innerHTML = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor'; cursor.textContent = '|'; el.appendChild(cursor);
+  for (let i=0; i<text.length; i++) { if (paused) await waitForResume(); el.insertBefore(document.createTextNode(text[i]), cursor); await delay(speed); }
+  cursor.remove();
+}
+function waitForResume() { return new Promise(resolve => { const c = setInterval(()=>{ if(!paused){clearInterval(c);resolve();} },100); }); }
+function clickEffect(el) { el.classList.add('clicking'); setTimeout(()=>el.classList.remove('clicking'),200); }
+function countUp(elementId, target, duration=800) {
+  const el = document.getElementById(elementId);
+  const start = Date.now();
+  function tick() { const p = Math.min((Date.now()-start)/duration,1); el.textContent = Math.round(p*target); if(p<1) requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+}
+function startTimeline() {
+  startTime = Date.now();
+  function tick() { if (!paused) { const pct = Math.min(((Date.now()-startTime)/TOTAL_DURATION)*100,100); document.getElementById('timelineProgress').style.width = pct+'%'; } if (startTime) rafId = requestAnimationFrame(tick); }
+  rafId = requestAnimationFrame(tick);
+}
+function resetDemo() {
+  clearAllTimers(); startTime = null; paused = false;
+  document.getElementById('timelineProgress').style.width = '0%';
+  ['ctaOverlay','draftOverlay','aiSummary1','riskReasons1','myAiSummary'].forEach(id => document.getElementById(id).classList.remove('visible','fade-in'));
+  ['aiSummaryText1','myAiSummaryText'].forEach(id => document.getElementById(id).innerHTML='');
+  document.getElementById('draftText').value = '';
+  document.getElementById('sceneCaption').classList.remove('visible');
+  document.querySelectorAll('.pr-card').forEach(c => c.classList.remove('highlighted','pulsing'));
+  [0,1,2,3,4,5,6].forEach(i => { const b = document.getElementById('bar'+i); if(b){b.style.height='0';b.classList.remove('filled');} });
+  ['kpi1','kpi2','kpi3'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent='0'; });
+  setTab('inbox');
+  document.getElementById('pauseLabel').textContent = s('pauseLabel');
+  setScene(0);
+}
+
+async function runDemo() {
+  resetDemo(); startTimeline();
+  setScene(0); setTab('inbox'); await delay(800);
+  setCaption(s('cap1a')); await delay(2000);
+  const pr1=document.getElementById('pr1'), pr2=document.getElementById('pr2'), pr3=document.getElementById('pr3');
+  pr1.classList.add('highlighted'); await delay(1200);
+  pr1.classList.remove('highlighted'); pr2.classList.add('highlighted'); await delay(1000);
+  pr2.classList.remove('highlighted'); pr3.classList.add('highlighted'); await delay(1000);
+  pr3.classList.remove('highlighted');
+  setCaption(s('cap1b'));
+  const ss = document.getElementById('sortSelect');
+  ss.style.borderColor='var(--accent)'; ss.style.background='rgba(249,115,22,.1)';
+  await delay(2000); ss.style.borderColor=''; ss.style.background='';
+
+  setScene(1); setCaption(s('cap2a')); await delay(1000);
+  pr1.classList.add('highlighted','pulsing'); await delay(800); pr1.classList.remove('pulsing');
+  document.getElementById('riskReasons1').classList.add('visible','fade-in'); await delay(2500);
+  setCaption(s('cap2b'));
+  document.getElementById('aiSummary1').classList.add('visible');
+  await typewrite('aiSummaryText1', s('tw_summary'), 22);
+  await delay(1500); pr1.classList.remove('highlighted');
+
+  setScene(2); setCaption(s('cap3')); await delay(800);
+  pr1.classList.add('highlighted'); await delay(500);
+  const draftBtn = document.getElementById('draftBtn1');
+  draftBtn.classList.add('pulsing'); await delay(600);
+  clickEffect(draftBtn); draftBtn.classList.remove('pulsing'); await delay(400);
+  document.getElementById('draftOverlay').classList.add('visible','fade-in');
+  pr1.classList.remove('highlighted');
+  await typewrite('draftText', s('tw_draft'), 16);
+  await delay(1000);
+  const sendBtn = document.getElementById('sendReviewBtn');
+  sendBtn.classList.add('pulsing'); await delay(1200);
+  clickEffect(sendBtn); sendBtn.classList.remove('pulsing');
+  sendBtn.innerHTML = '✅ ' + (lang==='es' ? 'Enviado!' : 'Sent!');
+  sendBtn.style.background = 'var(--green)';
+  await delay(1000);
+  document.getElementById('draftOverlay').classList.remove('visible');
+  sendBtn.innerHTML = '📤 <span id="lblSendReview">'+s('lblSendReview')+'</span>';
+  sendBtn.style.background = '';
+
+  setScene(3); setCaption(s('cap4')); await delay(300);
+  setTab('my'); await delay(1500);
+  const myPr = document.getElementById('myPr1');
+  myPr.classList.add('highlighted'); await delay(600);
+  const mySummaryBtn = document.getElementById('mySummaryBtn');
+  mySummaryBtn.classList.add('pulsing'); await delay(600);
+  clickEffect(mySummaryBtn); mySummaryBtn.classList.remove('pulsing'); await delay(400);
+  document.getElementById('myAiSummary').classList.add('visible');
+  await typewrite('myAiSummaryText', s('tw_mySummary'), 24);
+  await delay(1000); myPr.classList.remove('highlighted');
+
+  setScene(4); setCaption(s('cap5')); await delay(300);
+  setTab('stats'); await delay(600);
+  countUp('kpi1',3,700); await delay(300);
+  countUp('kpi2',1,700); await delay(300);
+  countUp('kpi3',3,700); await delay(800);
+  const barHeights=[40,55,30,70,62,20,45];
+  barHeights.forEach((h,i) => { setTimeout(() => { const b=document.getElementById('bar'+i); if(b){b.style.height=h+'%';b.classList.add('filled');} }, i*120); });
+  await delay(2000);
+
+  setScene(5); setCaption(s('cap6')); await delay(300);
+  setTab('settings'); await delay(1000);
+  const tags = document.querySelectorAll('#providerTags .provider-tag');
+  for (let i=0;i<tags.length;i++) {
+    tags[i].style.background='rgba(249,115,22,.25)'; tags[i].style.borderColor='var(--accent)';
+    await delay(300); tags[i].style.background=''; tags[i].style.borderColor='';
+  }
+  await delay(1000);
+
+  setScene(6); setCaption('',false); await delay(400);
+  document.getElementById('ctaOverlay').classList.add('visible','fade-in');
+  startTime = null;
+  document.getElementById('timelineProgress').style.width='100%';
+}
+
+document.getElementById('replayBtn').addEventListener('click', () => { paused=false; runDemo(); });
+document.getElementById('pauseBtn').addEventListener('click', () => {
+  paused = !paused;
+  document.getElementById('pauseLabel').textContent = paused ? (lang==='es' ? 'Reanudar' : 'Resume') : s('pauseLabel');
+  document.querySelector('#pauseBtn i').className = paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
+  if (!paused && startTime !== null) { startTime = Date.now() - (parseFloat(document.getElementById('timelineProgress').style.width)/100*TOTAL_DURATION); }
+});
+
+runDemo();
+</script>
+</body>
+</html>
