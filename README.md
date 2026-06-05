@@ -1,237 +1,467 @@
-# 🔥 PR Focus Pro — AI-Powered GitHub Pull Request Reviews
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     PR FOCUS PRO — GitHub README
+     Designed for maximum visual impact within GitHub's rendering constraints
+     Author: Alexandre Iglesias · Projekta2 Creative Studio · Girona, Spain
+     ═══════════════════════════════════════════════════════════════════════════ -->
 
-**Review PRs 10x faster with AI that runs locally, using your own API key.**
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:060810,30:0c1020,60:f97316,100:ea580c&height=260&section=header&text=PR%20Focus%20Pro&fontSize=90&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=Your%20GitHub%20PR%20inbox%2C%20supercharged%20by%20AI&descAlignY=62&descSize=19&descColor=ffffffcc" width="100%" />
+</p>
 
-> A Chrome extension for developers who want to stop drowning in pull requests. Prioritizes what matters, summarizes changes, drafts reviews — all without leaving your browser.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&pause=1000&color=F97316&center=true&vCenter=true&width=780&lines=Stop+drowning+in+pull+requests.;AI+summaries+generated+from+the+actual+diff.;Risk+scoring+(0%E2%80%93100)+for+every+change.;One-click+draft+reviews.+Ship+faster.;100%25+local.+Your+keys+never+leave+your+browser." alt="Animated tagline" />
+</p>
 
----
+<br />
 
-## 🎯 The Problem
+<p align="center">
+  <a href="https://projekta2.gumroad.com/l/PRFocusAIPro">
+    <img src="https://img.shields.io/badge/🔥_Get_PRO_–_$9.50_Launch_Special-f97316?style=for-the-badge&labelColor=0c0f1a&color=f97316" alt="Buy PRO" />
+  </a>
+  &nbsp;
+  <a href="https://projekta2.github.io/projekta2-pr-focus-landing/pr-focus-demo.html">
+    <img src="https://img.shields.io/badge/▶_Live_Demo-ff69b4?style=for-the-badge&labelColor=0c0f1a" alt="Live Demo" />
+  </a>
+  &nbsp;
+  <a href="https://projekta2.github.io/projekta2-pr-focus-landing/">
+    <img src="https://img.shields.io/badge/🌐_Landing_Page-3b82f6?style=for-the-badge&labelColor=0c0f1a" alt="Landing Page" />
+  </a>
+</p>
 
-You have 23 open PRs. CI is failing on three of them, two touch authentication, and one has been sitting for 9 days. You don't know where to start.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Live-10b981?style=flat-square&logo=statuspage&logoColor=white" />
+  <img src="https://img.shields.io/badge/Version-2.0-f97316?style=flat-square" />
+  <img src="https://img.shields.io/badge/Chrome_MV3-4285F4?style=flat-square&logo=googlechrome&logoColor=white" />
+  <img src="https://img.shields.io/badge/Model-Freemium-8b5cf6?style=flat-square" />
+  <img src="https://img.shields.io/badge/PRO_–_$9.50_lifetime-ff90e8?style=flat-square&logo=gumroad&logoColor=black" />
+  <img src="https://img.shields.io/badge/Privacy-100%25_local-10b981?style=flat-square&logo=shieldsdotio&logoColor=white" />
+</p>
 
-On average, developers spend **2-3 hours per day** just reading and triaging pull requests. 40% of that time is lost in irrelevant details, and critical bugs slip through because there's no way to spot risky changes at a glance.
+<br />
 
-**PR Focus Pro solves this** — by bringing AI directly into your GitHub workflow, without sending your code to any third-party server.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
----
+<br />
 
-## ✨ What PR Focus Pro Does
+## 🔥 The Problem
 
-### 🚀 Core Features
+<br />
 
-- **🤖 AI PR Summaries** – 2‑3 sentence plain‑English explanation of every PR, generated directly from the diff. Understand what changed without opening GitHub.
+> **Every developer knows the feeling.** You open GitHub and there are 14 open PRs staring back at you. Which one is urgent? Which one is going to break prod? Which one has been waiting 3 days and blocking a teammate?
+>
+> *You have no idea. Neither does GitHub.*
 
-- **🔴 Risk Scoring (0–100)** – AI analyzes CI status, PR age, and code scope (auth, DB, infra) to flag risky changes. See exactly why a PR needs your attention.
+<br />
 
-- **✨ One‑Click Draft Reviews** – Generate an approval or request‑changes draft with AI. Edit the text, then send or post as a comment — all from the popup.
+<table width="100%">
+  <tr>
+    <td align="center" width="33%">
+      <br />
+      <b>⏱️ 2–3h daily</b>
+      <br /><br />
+      <sub>Average time developers spend on code reviews — much of it deciding <em>what to review first</em>, not actually reviewing.</sub>
+      <br /><br />
+    </td>
+    <td align="center" width="33%">
+      <br />
+      <b>🔁 Same comments, every PR</b>
+      <br /><br />
+      <sub>You're a human linter catching the same patterns in every diff. That's a job for a machine — not for your brain.</sub>
+      <br /><br />
+    </td>
+    <td align="center" width="33%">
+      <br />
+      <b>🐛 Critical bugs slip through</b>
+      <br /><br />
+      <sub>Context overload is real. Auth changes buried under style fixes get the same 30-second glance. They shouldn't.</sub>
+      <br /><br />
+    </td>
+  </tr>
+</table>
 
-- **⚡ Hybrid Priority Queue** – PRs are automatically sorted by a hybrid score:  
-  `CI failure × 100 + age × 10 + AI risk × 2`. The most critical PR always rises to the top.
+<br />
 
-- **🏢 Multi‑account GitHub** – Switch between personal and work accounts in one click. Each account keeps its own token.
-
-- **🔒 100% Local – BYOK** – Your GitHub token and AI key never leave your browser. Works with OpenAI, Groq (free tier available), Mistral, Together AI, or local Ollama.
-
-- **📊 Analytics Dashboard** – Weekly activity chart, KPIs, and risk breakdown (high/medium). All data stays in IndexedDB.
-
-- **🔔 Stale PR Notifications** – Get alerts after X days without review. Optional Slack/Discord webhook with risk score included.
-
-- **📎 CSV / PDF Export** – Generate reports in seconds.
-
-- **🌓 Dark / Light / System themes** – UI adapts to your preference.
-
----
-
-## 📸 How It Works (Visual)
-
-```text
+```
 ┌─────────────────────────────────────────────────────────────────┐
-│  🔹 PR Focus Pro – Inbox                                        │
-│  ┌─────────────────────────────────────────────────────────────┐
-│  │ 🔴 Risk 87   refactor: migrate auth to JWT RS256            │
-│  │              acme/backend · 9 days · ❌ CI fail              │
-│  │              [✅ Approve] [🔄 Changes] [✨ Draft]            │
-│  └─────────────────────────────────────────────────────────────┘
-│  ┌─────────────────────────────────────────────────────────────┐
-│  │ 🟡 Risk 48   feat: add Stripe webhook endpoint             │
-│  │              acme/payments · 4 days · ⏳ pending             │
-│  └─────────────────────────────────────────────────────────────┘
-│  ┌─────────────────────────────────────────────────────────────┐
-│  │ 🟢 Risk 12   docs: update README with deployment            │
-│  │              acme/docs · 1 day · ✅ success                  │
-│  └─────────────────────────────────────────────────────────────┘
+│  PR Focus Pro solves this.                                      │
+│                                                                 │
+│  It sits on top of GitHub, reads the actual diffs with AI,     │
+│  and turns your inbox into a prioritized, summarized,          │
+│  draftable queue — in seconds, not hours.                       │
 └─────────────────────────────────────────────────────────────────┘
-👉 Try the live interactive demo – no installation required.
+```
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
+
+<br />
+
+## ✨ Features
+
+<br />
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🤖 &nbsp;AI PR Summaries</h3>
+      <p>2–3 sentence plain-English explanation of every PR, generated from the <strong>actual diff</strong> — not the PR title someone wrote at 11pm.</p>
+      <sub><code>Powered by your own AI key · Any OpenAI-compatible provider</code></sub>
+    </td>
+    <td width="50%" valign="top">
+      <h3>📊 &nbsp;Risk Scoring <code>0 – 100</code></h3>
+      <p>AI evaluates CI status, PR age, and code scope — auth, DB, infra — to flag risky changes <strong>before</strong> you even open them.</p>
+      <sub><code>CI failures · age · auth/DB/infra detection · combined score</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>⚡ &nbsp;One‑click Draft Reviews</h3>
+      <p>Generate approve or request‑changes drafts from the diff. Edit and send directly — <strong>without leaving the extension</strong>.</p>
+      <sub><code>Approve · Request changes · Custom instructions supported</code></sub>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🧠 &nbsp;Hybrid Priority Queue</h3>
+      <p>Combines CI failures, PR age, and AI risk score into a <strong>single intelligent sort</strong>. Review what matters first. Always.</p>
+      <sub><code>CI status + age + AI risk → unified priority rank</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>👥 &nbsp;Multi‑account GitHub</h3>
+      <p>Switch between personal and work GitHub accounts in one click. No token juggling, no re-authentication dance.</p>
+      <sub><code>Personal · Work · Any number of accounts</code></sub>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🔒 &nbsp;100% Local — BYOK</h3>
+      <p>Your API keys never leave your browser. Zero telemetry. Zero servers. Works with OpenAI, Groq, Mistral, or local Ollama.</p>
+      <sub><code>OpenAI · Groq · Mistral · Ollama (local)</code></sub>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
+
+<br />
+
+## 🚀 How It Works
+
+<br />
+
+<table width="100%">
+  <tr>
+    <td align="center" width="33%">
+      <br />
+      <img src="https://img.shields.io/badge/STEP_01-Install_%26_Connect-f97316?style=for-the-badge&labelColor=0c0f1a" />
+      <br /><br />
+      <b>⬇️ &nbsp;Add the extension</b>
+      <br /><br />
+      <sub>Install from the Chrome Web Store (or load unpacked). Paste your GitHub token — classic, with <code>repo</code> scope. Done.</sub>
+      <br /><br />
+    </td>
+    <td align="center" width="33%">
+      <br />
+      <img src="https://img.shields.io/badge/STEP_02-Add_AI_Key_(Optional)-fb923c?style=for-the-badge&labelColor=0c0f1a" />
+      <br /><br />
+      <b>🔑 &nbsp;Bring your own key</b>
+      <br /><br />
+      <sub>Paste your OpenAI, Groq, or other provider key to unlock AI summaries, risk scores, and draft reviews. Groq has a free tier.</sub>
+      <br /><br />
+    </td>
+    <td align="center" width="33%">
+      <br />
+      <img src="https://img.shields.io/badge/STEP_03-Review_Smarter-fbbf24?style=for-the-badge&labelColor=0c0f1a" />
+      <br /><br />
+      <b>✅ &nbsp;Open the popup</b>
+      <br /><br />
+      <sub>PRs are automatically summarized, scored, and sorted. Draft a review in one click. Ship faster than ever.</sub>
+      <br /><br />
+    </td>
+  </tr>
+</table>
+
+```bash
+# That's the entire setup. Seriously.
+$ click "Add to Chrome"
+$ paste_token --scope repo
+$ (optional) paste_ai_key --provider groq|openai|mistral|ollama
+$ open_popup → PRs sorted, summarized, ready ✓
+```
 
-🎬 Real‑World Use Cases
-For Development Teams
-Reduce code review time by 60% – focus only on high‑risk changes.
+<br />
 
-Enforce consistent quality with AI‑generated summaries that everyone can follow.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
-Onboard junior developers faster – they get clear explanations of every PR.
+<br />
 
-For Freelancers & Solo Developers
-Review your own code more efficiently before pushing.
+## 💰 Pricing
 
-Catch bugs before they reach production (risk score flags dangerous changes).
+<br />
 
-Bill more hours – every minute saved on PRs is billable time.
+<p align="center">
 
-For Tech Leads & DevOps
-Automatically audit critical changes (auth, infrastructure, DB).
+| | **Free** | **PRO** |
+|---|:---:|:---:|
+| Multi-account GitHub | ✅ | ✅ |
+| PR sorting & export | ✅ | ✅ |
+| Stale PR notifications | ✅ | ✅ |
+| **AI PR Summaries** | ❌ | ✅ |
+| **Risk Scoring (0–100)** | ❌ | ✅ |
+| **One-click Draft Reviews** | ❌ | ✅ |
+| **Full stats history** | ❌ | ✅ |
+| **AI priority sorting** | ❌ | ✅ |
+| **All future updates** | ❌ | ✅ |
+| **Price** | Free forever | ~~$19~~ **$9.50** one-time |
 
-Get real‑time quality reports and risk distribution.
+</p>
 
-Spend less time in meetings explaining PRs.
+<br />
 
-💻 Installation (3 Steps)
-1️⃣ Install from Chrome Web Store
-https://img.shields.io/badge/Install%2520from%2520Chrome%2520Web%2520Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white
+<p align="center">
+  <a href="https://projekta2.gumroad.com/l/PRFocusAIPro">
+    <img src="https://img.shields.io/badge/🔥_Get_PRO_–_$9.50_(50%25_off_launch_price)-f97316?style=for-the-badge&labelColor=0c0f1a" />
+  </a>
+</p>
 
-(Replace YOUR_EXTENSION_ID with the real ID once published)
+<p align="center">
+  <img src="https://img.shields.io/badge/🛡️_30--day_money--back_guarantee,_no_questions_asked-10b981?style=flat-square&labelColor=0c0f1a" />
+</p>
 
-2️⃣ Add your GitHub account
-Click the PR Focus icon in your toolbar.
+<p align="center">
+  <sub>One-time payment · Lifetime access · Price increases after launch period</sub>
+</p>
 
-Go to Settings → Manage GitHub accounts.
+<br />
 
-Add your username and a classic token with scopes:
-repo, read:org, user, read:discussion.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
-3️⃣ (Optional) Add an AI API key
-In Settings → AI Features, paste your API key from OpenAI, Groq, Mistral, etc.
+<br />
 
-Set your endpoint (or leave default for OpenAI).
+## 🔧 Requirements
 
-Click Test connection → you'll see a success message.
+<br />
 
-That's it. Now open any GitHub PR – the extension will automatically analyze and prioritize it.
+```
+✅  Chrome 90+
+✅  GitHub account (free)
+✅  GitHub personal access token (classic · repo scope)
+✅  (optional) AI provider key: OpenAI · Groq (free tier) · Mistral · Ollama
+❌  No local installation required
+❌  No account registration
+❌  No data sent to any server
+```
 
-🎁 Pricing – Fair, One‑Time, No Subscription
-Plan	Price	What's Included
-Free	$0	Multi‑account GitHub, hybrid priority queue, CSV/PDF export, stale notifications, dark/light themes
-Pro – Launch Special	$9.50 one‑time	Everything in Free + AI summaries, risk scoring, one‑click draft reviews, full stats history, lifetime updates
-Pro – Regular	$19 one‑time	Same as above (price increases after launch)
-30‑day money‑back guarantee. If PR Focus doesn't save you time, we'll refund you. No questions asked.
+<br />
 
-👥 What Early Users Are Saying
-"I used to start every morning triaging 15+ PRs manually. Now the risk score tells me in seconds which one needs me first. The AI summary alone saves me 10 minutes per PR."
-— Sarah R., Senior Engineer
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
-"The draft review feature is what I didn't know I needed. I edit maybe 20% of what it generates. The rest is good enough to ship as‑is. My review throughput doubled."
-— Marcus K., Tech Lead
+<br />
 
-"The fact that it uses my own API key and stores nothing externally was the dealbreaker for our security team. They approved it in one day. Most tools never even get through review."
-— Jana L., Engineering Manager
+## 🧱 Tech Stack
 
-📊 Measurable Impact (Real Data)
-⚡ 60% faster – Users report cutting PR triage time by more than half.
+<br />
 
-🎯 85% fewer missed bugs – Risk scoring catches dangerous changes before merge.
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Chrome_Extensions_MV3-4285F4?style=flat-square&logo=googlechrome&logoColor=white" />
+  <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white" />
+  <img src="https://img.shields.io/badge/REST_API-f97316?style=flat-square&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/IndexedDB-0064a5?style=flat-square&logo=databricks&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenAI_Compatible-412991?style=flat-square&logo=openai&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gumroad_Licensing-ff90e8?style=flat-square&logo=gumroad&logoColor=black" />
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" />
+</p>
 
-💰 +10 hours/week – Time recovered by automating repetitive review tasks.
+<br />
 
-🌍 500+ developers already using PR Focus (early access).
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
-🔧 Requirements
-✅ Chrome 90+ (or any Chromium browser: Edge, Brave, Opera)
+<br />
 
-✅ Active GitHub account (free or paid)
+## 🗺️ Roadmap
 
-✅ Access to GitHub repositories (public or private)
+<br />
 
-❌ No local server required – everything runs in your browser
+**Q2 2026** &nbsp;`✅ Shipped`
 
-📚 Documentation & Support
-📖 Full User Guide
+- [x] AI PR summaries from actual diffs
+- [x] Risk scoring (0–100) with auth/DB/infra detection
+- [x] One-click draft review generation
+- [x] Hybrid priority queue (CI + age + AI risk)
+- [x] Multi-account GitHub support
+- [x] BYOK — OpenAI, Groq, Mistral, Ollama
+- [x] Bilingual UI (English / Spanish)
 
-🎓 Interactive Demo
+**Q3 2026** &nbsp;`🔄 In progress`
 
-❓ FAQ
+- [ ] AI-powered performance regression detection
+- [ ] Python & Go language support
+- [ ] Slack / Discord notifications
+- [ ] PR review time analytics dashboard
+
+**Q4 2026** &nbsp;`🚀 Planned`
+
+- [ ] Firefox extension port
+- [ ] VSCode & JetBrains sidebar integration
+- [ ] CLI tool for terminal-first workflows
+- [ ] GitHub App (team-level deployment)
+
+<br />
+
+> 💡 Have a feature request? [Open an issue](../../issues) — the roadmap is shaped by the people using it.
+
+<br />
 
-💬 Open an issue on GitHub
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
 
-📧 Email support: hello@projekta2.com
+<br />
 
-🗺️ Public Roadmap
-Q2 2026 ✅ Shipped
-AI summaries & risk scoring (0–100)
+## ❓ FAQ
 
-One‑click draft reviews
-
-Multi‑account GitHub support
-
-Hybrid priority queue
-
-CSV / PDF export
-
-Stale PR notifications + webhooks
-
-Q3 2026 🔄 In Development
-Support for GitLab and Bitbucket (read‑only)
-
-Team plan with shared risk dashboard
-
-PR metrics history (time to review, merge rate)
-
-Q4 2026 🚀 Planned
-Slack bot integration (post AI summaries to channel on PR open)
-
-GitHub App for server‑side enrichment (no BYOK needed)
-
-VSCode extension companion
-
-🤝 Contributing
-This project is open source (MIT). Contributions are welcome!
-
-bash
-# Clone the repo
-git clone https://github.com/projekta2/pr-focus-source.git
-
-# Create your branch
-git checkout -b feature/amazing-feature
-
-# Make your changes and commit
-git commit -m "feat: add support for GitLab"
-
-# Push and open a pull request
-git push origin feature/amazing-feature
-Please read CONTRIBUTING.md before submitting.
-
-📝 License
-MIT License – you are free to use, modify, and distribute. See LICENSE for details.
-
-🌟 Show Your Support
-If PR Focus Pro saves you time, please:
-
-⭐ Star this repository – it helps others find the project
-📢 Share with your developer friends – on Twitter, LinkedIn, or Reddit
-💬 Leave a review on the Chrome Web Store (once published)
-
-📬 Stay Updated
-🐦 Twitter / X: @projekta2_dev
-
-📧 Newsletter: Subscribe (coming soon)
-
-📱 LinkedIn: Alexandre Iglesias
-
-👨‍💻 About the Creator
-I'm a Visual Designer who crossed into code because the tools I wanted didn't exist yet.
-
-I spent years running Projekta2 Creative Studio, building immersive web experiences at the intersection of design and engineering – the kind where you're not sure if you're looking at a website or an installation.
-
-That background shapes everything I build: obsession with detail, bilingual UX from day one, and dark mode that actually works.
-
-Now I build Chrome extensions for freelancers and developers who value their time.
-
-🎨 Background: 10+ years in visual design, creative direction, motion graphics
-
-💻 Self‑taught developer: JavaScript, Chrome Extensions API, GraphQL, IndexedDB
-
-🚀 Builder indie: Two live products (TabCost Pro & PR Focus Pro), both bootstrapped
-
-GitHub · LinkedIn · Email
-
-<p align="center"> <sub><i>Built with care in Girona, Spain · Last update: June 2026</i></sub> </p><p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:f97316,100:ea580c&height=100&section=footer" width="100%" /> </p> ```
+<br />
+
+<details>
+<summary><b>Do I need an AI API key?</b></summary>
+<br />
+Only for AI features (summaries, risk scores, draft reviews). The core extension — multi-account, sorting, export, stale notifications — works without one. For AI features, Groq offers a generous free tier that covers most individual workflows.
+<br /><br />
+</details>
+
+<details>
+<summary><b>Is my data safe?</b></summary>
+<br />
+Yes — everything stays in your browser. There are no servers, no tracking, no analytics. Your GitHub token and AI keys are stored locally in <code>chrome.storage.local</code> and are never transmitted to any external service beyond the provider you explicitly configure.
+<br /><br />
+</details>
+
+<details>
+<summary><b>Can I use the same license on multiple devices?</b></summary>
+<br />
+Yes — one license per OS user profile. You can deactivate and reactivate up to 3 times per year, which covers normal device upgrades and reinstalls.
+<br /><br />
+</details>
+
+<details>
+<summary><b>What's the refund policy?</b></summary>
+<br />
+30-day full refund, no questions asked. If PR Focus Pro doesn't save you meaningful time in the first month, you'll get every cent back.
+<br /><br />
+</details>
+
+<details>
+<summary><b>Which AI providers are supported?</b></summary>
+<br />
+
+| Provider | Free Tier | Notes |
+|---|---|---|
+| **Groq** | ✅ Yes | Recommended for most users |
+| **OpenAI** | ❌ Paid | GPT-4o, GPT-4 Turbo |
+| **Mistral** | ❌ Paid | Mistral-large, codestral |
+| **Ollama** | ✅ Local | Requires local Ollama install |
+
+<br />
+</details>
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
+
+<br />
+
+## 👨‍💻 About the Creator
+
+<br />
+
+<table width="100%">
+  <tr>
+    <td width="68%" valign="top">
+      <h3>Alexandre Iglesias</h3>
+      <p><em>Visual Designer who learned to code — not by accident, but because the tools I wanted didn't exist yet.</em></p>
+      <p>I spent years running <strong>Projekta2 Creative Studio</strong>, building immersive digital experiences at the intersection of design and engineering. That background shapes everything I ship: obsession with detail, bilingual UX from day one, dark mode that actually works.</p>
+      <p>PR Focus Pro started because I was losing hours every week to code review overhead. I automated it. Then I realized other developers were losing the same hours. So I shipped it.</p>
+      <p>
+        <img src="https://img.shields.io/badge/Background-UX%20%2F%20Visual%20Design-f97316?style=flat-square" />
+        <img src="https://img.shields.io/badge/Approach-Self--taught_in_public-3b82f6?style=flat-square" />
+        <img src="https://img.shields.io/badge/Location-Girona,_Spain-10b981?style=flat-square" />
+      </p>
+    </td>
+    <td width="32%" valign="top" align="center">
+      <br />
+      <img src="https://img.shields.io/badge/TabCost_Pro-Also_live-f97316?style=for-the-badge&labelColor=0c0f1a" />
+      <br /><br />
+      <sub>The other extension — tracks idle tab time as real opportunity cost. Built for freelancers billing by the hour.</sub>
+      <br /><br />
+      <a href="https://chromewebstore.google.com/detail/tabcost-pro/oifegknejkfiibmfapdfcgemclgmmghm">
+        <img src="https://img.shields.io/badge/Install_Free-4285F4?style=flat-square&logo=googlechrome&logoColor=white" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
+
+<br />
+
+## 🤝 Get in Touch
+
+<br />
+
+<p align="center">
+  <a href="mailto:hello@projekta2.com">
+    <img src="https://img.shields.io/badge/hello@projekta2.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  &nbsp;
+  <a href="https://linkedin.com/in/alexiglesias1">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/projekta2">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+</p>
+
+<p align="center">
+  <sub><i>Building in public · Girona, Spain · Always open to interesting problems.</i></sub>
+</p>
+
+<br />
+
+---
+
+<p align="center">
+  <sub>
+    © 2026 PR Focus — Built for developers who take code review seriously. &nbsp;·&nbsp;
+    <a href="https://projekta2.github.io/pr-focus-privacy/">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="https://projekta2.github.io/pr-focus-terms/">Terms of Service</a>
+  </sub>
+</p>
+
+<br />
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ea580c,50:f97316,100:060810&height=140&section=footer" width="100%" />
+</p>
