@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PR Focus – AI‑powered GitHub PR reviews</title>
-  <meta name="description" content="Stop drowning in pull requests. PR Focus uses AI to summarize PRs, detect risk, and draft reviews. Free tier available, PRO from $9.50 lifetime – launch special.">
+  <meta name="description" content="AI-powered Chrome extension for GitHub pull request reviews. Get AI summaries, risk scores (0‑100), one‑click draft reviews, and hybrid priority queue. Lifetime license from $9.50.">
   <meta property="og:title" content="PR Focus – AI GitHub PR Review Manager">
-  <meta property="og:description" content="Prioritize, summarize, and review pull requests with AI. Works with GitHub, any AI provider.">
+  <meta property="og:description" content="Prioritize, summarize, and review pull requests with AI. Works with GitHub, any AI provider (OpenAI, Groq, Ollama). One‑time payment, lifetime license.">
   <meta property="og:image" content="https://projekta2.github.io/pr-focus-landing/pr-focus-banner.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://projekta2.github.io/pr-focus-landing/">
+  <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -934,6 +936,28 @@ body::after {
   .nav-links a, .nav-links .lang-switch { font-size: 0.65rem; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "PR Focus AI Pro",
+  "description": "Chrome extension that uses AI to summarize GitHub pull requests, assign risk scores (0‑100), and generate draft reviews. One-time payment, lifetime license.",
+  "image": "https://projekta2.github.io/pr-focus-landing/pr-focus-banner.png",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "9.50",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "url": "https://projekta2.gumroad.com/l/PRFocusAIPro"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Projekta2 Creative Studio"
+  }
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -981,12 +1005,21 @@ body::after {
       <a href="#features" class="btn-outline">
         <span data-i18n="learnMore">Learn more ↓</span>
       </a>
-      <a href="https://rawcdn.githack.com/projekta2/pr-focus-landing/5fcc90333bd68151b15833d29a1d9a65c17fd964/pr-focus-demo.html" class="btn-outline" target="_blank" rel="noopener">
-        <i class="fas fa-play-circle"></i> Live demo
-      </a>
-    </div>
+      <a href="https://projekta2.github.io/pr-focus-landing/pr-focus-demo.html" class="btn-outline" target="_blank" rel="noopener">
+  <i class="fas fa-play-circle"></i> Live demo
+</a>
+     </div>
 
-    <div class="launch-note">
+  <div style="display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; margin-top: 8px;">
+    <a href="https://chromewebstore.google.com/detail/pr-focus-ai-pro/ememaiabefeojkccjclglcmbjmdpnaoe" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
+      <i class="fab fa-chrome"></i> Install free
+    </a>
+    <a href="https://github.com/projekta2/pr-focus-landing" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+
+  <div class="launch-note">
       <strong data-i18n="launchOffer">🔥 Launch offer:</strong>
       <span data-i18n="launchPrice">Regular $19 – Now $9.50 (50% off). Limited units. Price increases after launch.</span>
     </div>
