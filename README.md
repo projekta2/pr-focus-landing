@@ -190,7 +190,7 @@ Here’s what PR Focus Pro looks like in action. All screenshots are from the li
 
 </div>
 
-> 💡 You can also try the **[▶ interactive live demo](https://projekta2.github.io/projekta2-pr-focus-landing/pr-focus-demo.html)** – a fully interactive simulation with a guided tour. No installation required.
+> 💡 You can also try the **[▶ interactive live demo](https://projekta2.github.io/pr-focus-landing/pr-focus-demo.html)** – a fully interactive simulation with a guided tour. No installation required.
 
 <br />
 
