@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* ── RESET & ROOT ─────────────────────────────────────────────────────────── */
+/* ── RESET & ROOT (exactamente igual que el original, sin cambios) ───────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -82,7 +82,7 @@ body::after {
   z-index: 1;
 }
 
-/* ── HEADER ─────────────────────────────────────────────────────────────────── */
+/* ── HEADER (sin cambios) ─────────────────────────────────────────────────── */
 .header {
   display: flex;
   justify-content: space-between;
@@ -93,811 +93,147 @@ body::after {
   border-bottom: 1px solid var(--border);
   position: relative;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.logo-img {
-  width: 36px; height: 36px;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 0 16px rgba(249,115,22,0.3);
-}
-
-.logo-text {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #f97316, #fbbf24);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-}
-
-.logo-version {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--accent);
-  background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.2);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; box-shadow: 0 0 16px rgba(249,115,22,0.3); }
+.logo-text { font-family: var(--font-display); font-size: 1.25rem; font-weight: 900; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em; }
+.logo-version { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); padding: 2px 6px; border-radius: 4px; }
+.nav-links { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; text-transform: uppercase; }
 .nav-links a::before { content: '// '; color: var(--border2); }
 .nav-links a:hover { color: var(--accent); }
 .nav-links a:hover::before { color: var(--accent); opacity: 0.5; }
-
-.lang-switch {
-  font-family: var(--font-mono);
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-size: 0.72rem;
-  color: var(--text);
-  transition: all 0.2s;
-  letter-spacing: 0.03em;
-}
+.lang-switch { font-family: var(--font-mono); background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 0.72rem; color: var(--text); transition: all 0.2s; letter-spacing: 0.03em; }
 .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ── BUTTONS ────────────────────────────────────────────────────────────────── */
-.btn-primary {
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  padding: 13px 28px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  font-family: var(--font-display);
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: -0.01em;
-}
-.btn-primary::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-  pointer-events: none;
-}
-.btn-primary:hover {
-  background: var(--accent2);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(249,115,22,0.35);
-}
-
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  padding: 12px 24px;
-  font-weight: 600;
-  font-family: var(--font-display);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-}
-.btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--glow2);
-  transform: translateY(-2px);
-}
+/* ── BUTTONS ───────────────────────────────────────────────────────────────── */
+.btn-primary { background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 13px 28px; font-weight: 700; font-size: 0.9rem; font-family: var(--font-display); cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; letter-spacing: -0.01em; }
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); pointer-events: none; }
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,0.35); }
+.btn-outline { background: transparent; border: 1px solid var(--border2); border-radius: 10px; padding: 12px 24px; font-weight: 600; font-family: var(--font-display); color: var(--muted); cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--glow2); transform: translateY(-2px); }
 
 /* ── HERO ───────────────────────────────────────────────────────────────────── */
-.hero {
-  padding: 96px 0 64px;
-  position: relative;
-}
-
-/* Decorative orb */
-.hero-orb {
-  position: absolute;
-  top: -100px; right: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-/* Terminal header line */
-.hero-terminal-line {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.hero { padding: 96px 0 64px; position: relative; }
+.hero-orb { position: absolute; top: -100px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%); pointer-events: none; border-radius: 50%; }
+.hero-terminal-line { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 8px; }
 .term-dot { width: 8px; height: 8px; border-radius: 50%; }
 .term-dot.r { background: #ef4444; }
 .term-dot.y { background: #f59e0b; }
 .term-dot.g { background: #10b981; }
-.term-bar {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.7rem;
-  color: var(--dim);
-}
+.term-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 14px; display: flex; align-items: center; gap: 8px; font-size: 0.7rem; color: var(--dim); }
 .term-bar .cursor { color: var(--accent); animation: blink .8s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-.hero h1 {
-  font-size: clamp(2.6rem, 7vw, 4.8rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  margin-bottom: 28px;
-}
-
+.hero h1 { font-size: clamp(2.6rem, 7vw, 4.8rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 28px; }
 .hero h1 .word-normal { color: var(--text); }
-.hero h1 .word-accent {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 60%, #f97316 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-}
+.hero h1 .word-accent { background: linear-gradient(135deg, #f97316 0%, #fbbf24 60%, #f97316 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s linear infinite; }
 @keyframes shimmer { to { background-position: 200% center; } }
-
-/* Strikethrough decoration on "drowning" */
-.strike {
-  position: relative;
-  color: var(--dim);
-  -webkit-text-fill-color: var(--dim);
-}
-.strike::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  top: 50%;
-  height: 3px;
-  background: var(--red);
-  opacity: 0.7;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: var(--muted);
-  max-width: 620px;
-  margin-bottom: 40px;
-  line-height: 1.7;
-  font-weight: 400;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-  align-items: center;
-}
-
-.launch-note {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  background: rgba(249,115,22,0.06);
-  border: 1px solid rgba(249,115,22,0.18);
-  padding: 8px 16px;
-  border-radius: 8px;
-  line-height: 1.5;
-  flex-wrap: wrap;
-  max-width: 100%;
-}
+.strike { position: relative; color: var(--dim); -webkit-text-fill-color: var(--dim); }
+.strike::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; background: var(--red); opacity: 0.7; }
+.hero p { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin-bottom: 40px; line-height: 1.7; font-weight: 400; }
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; align-items: center; }
+.launch-note { display: inline-flex; align-items: flex-start; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.18); padding: 8px 16px; border-radius: 8px; line-height: 1.5; flex-wrap: wrap; max-width: 100%; }
 .launch-note strong { color: var(--accent); flex-shrink: 0; }
 
 /* ── BANNER IMAGE ───────────────────────────────────────────────────────────── */
-.banner-wrap {
-  position: relative;
-  max-width: 980px;
-  margin: 0 auto 48px;
-}
-@media (min-width: 701px) {
-  .banner-wrap { margin-bottom: 40px; }
-}
-.banner-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 26px;
-  background: linear-gradient(135deg, rgba(249,115,22,0.4), rgba(251,191,36,0.2), rgba(249,115,22,0.1));
-  z-index: 0;
-}
-.banner-img {
-  position: relative;
-  z-index: 1;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8), 0 0 60px rgba(249,115,22,0.08);
-}
-.banner-img img {
-  width: 100%; height: auto; display: block;
-}
-.banner-chrome-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.banner-wrap { position: relative; max-width: 980px; margin: 0 auto 48px; }
+@media (min-width: 701px) { .banner-wrap { margin-bottom: 40px; } }
+.banner-wrap::before { content: ''; position: absolute; inset: -1px; border-radius: 26px; background: linear-gradient(135deg, rgba(249,115,22,0.4), rgba(251,191,36,0.2), rgba(249,115,22,0.1)); z-index: 0; }
+.banner-img { position: relative; z-index: 1; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8), 0 0 60px rgba(249,115,22,0.08); }
+.banner-img img { width: 100%; height: auto; display: block; }
+.banner-chrome-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
 .chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
 .chrome-dot:nth-child(1) { background: #ef4444; }
 .chrome-dot:nth-child(2) { background: #f59e0b; }
 .chrome-dot:nth-child(3) { background: #10b981; }
-.chrome-url {
-  flex: 1;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 4px 12px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--dim);
-  margin: 0 12px;
-}
+.chrome-url { flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--dim); margin: 0 12px; }
 
 /* ── SECTION TITLES ─────────────────────────────────────────────────────────── */
-.section-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.section-eyebrow { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
 .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
-
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 56px;
-  line-height: 1.15;
-}
-
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 56px; line-height: 1.15; }
 .section-title .dim-word { color: var(--dim); }
 
 /* ── FEATURES ───────────────────────────────────────────────────────────────── */
 #features { padding: 80px 0; }
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.feature-card {
-  background: var(--surface);
-  padding: 36px 28px;
-  transition: background 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.feature-card:hover {
-  background: var(--surface2);
-}
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
+.feature-card { background: var(--surface); padding: 36px 28px; transition: background 0.3s; position: relative; overflow: hidden; }
+.feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
+.feature-card:hover { background: var(--surface2); }
 .feature-card:hover::before { opacity: 1; }
+.feature-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--dim); margin-bottom: 20px; letter-spacing: 0.1em; }
+.feature-icon { width: 44px; height: 44px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent); margin-bottom: 18px; transition: all 0.3s; position: relative; }
+.feature-icon[data-tip]::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9); background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: var(--font-mono); font-size: 0.6rem; padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 10; }
+.feature-icon[data-tip]:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
+.feature-card:hover .feature-icon { background: rgba(249,115,22,0.18); box-shadow: 0 0 20px rgba(249,115,22,0.2); }
+.feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+.feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
 
-.feature-num {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--dim);
-  margin-bottom: 20px;
-  letter-spacing: 0.1em;
-}
-
-.feature-icon {
-  width: 44px; height: 44px;
-  background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.2);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  color: var(--accent);
-  margin-bottom: 18px;
-  transition: all 0.3s;
-  position: relative;
-}
-/* Tooltip */
-.feature-icon[data-tip]::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) scale(0.9);
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  padding: 4px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 10;
-}
-.feature-icon[data-tip]:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-}
-
-.feature-card:hover .feature-icon {
-  background: rgba(249,115,22,0.18);
-  box-shadow: 0 0 20px rgba(249,115,22,0.2);
-}
-
-.feature-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-
-.feature-card p {
-  color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.65;
-}
-
-/* ── HOW IT WORKS ───────────────────────────────────────────────────────────── */
+/* ── HOW IT WORKS (sin cambios) ─────────────────────────────────────────────── */
 #how-it-works { padding: 80px 0; }
+.steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.steps-row::before { content: ''; position: absolute; top: 60px; left: calc(16.66% + 28px); right: calc(16.66% + 28px); height: 1px; background: linear-gradient(90deg, var(--border2), var(--accent), var(--border2)); z-index: 0; }
+.step { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 36px 28px; text-align: center; transition: all 0.3s; position: relative; z-index: 1; margin: 0 8px; }
+.step:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(249,115,22,0.1); }
+.step-badge { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); padding: 3px 8px; border-radius: 20px; display: inline-block; margin-bottom: 16px; letter-spacing: 0.08em; }
+.step-icon { width: 56px; height: 56px; background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05)); border: 1px solid rgba(249,115,22,0.25); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent); margin: 0 auto 20px; transition: all 0.3s; }
+.step:hover .step-icon { background: rgba(249,115,22,0.22); box-shadow: 0 0 24px rgba(249,115,22,0.25); }
+.step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+.step p { color: var(--muted); font-size: 0.83rem; line-height: 1.6; }
 
-.steps-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  position: relative;
-}
-
-/* Connector lines between steps */
-.steps-row::before {
-  content: '';
-  position: absolute;
-  top: 60px;
-  left: calc(16.66% + 28px);
-  right: calc(16.66% + 28px);
-  height: 1px;
-  background: linear-gradient(90deg, var(--border2), var(--accent), var(--border2));
-  z-index: 0;
-}
-
-.step {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 36px 28px;
-  text-align: center;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 1;
-  margin: 0 8px;
-}
-.step:hover {
-  border-color: var(--accent);
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(249,115,22,0.1);
-}
-
-.step-badge {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--accent);
-  background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.2);
-  padding: 3px 8px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 16px;
-  letter-spacing: 0.08em;
-}
-
-.step-icon {
-  width: 56px; height: 56px;
-  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05));
-  border: 1px solid rgba(249,115,22,0.25);
-  border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-  color: var(--accent);
-  margin: 0 auto 20px;
-  transition: all 0.3s;
-}
-.step:hover .step-icon {
-  background: rgba(249,115,22,0.22);
-  box-shadow: 0 0 24px rgba(249,115,22,0.25);
-}
-
-.step h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-
-.step p {
-  color: var(--muted);
-  font-size: 0.83rem;
-  line-height: 1.6;
-}
-
-/* ── PRICING ────────────────────────────────────────────────────────────────── */
+/* ── PRICING (sin cambios) ──────────────────────────────────────────────────── */
 #pricing { padding: 80px 0; }
-
-.pricing-outer {
-  max-width: 580px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Glow halo */
-.pricing-outer::before {
-  content: '';
-  position: absolute;
-  inset: -40px;
-  background: radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.pricing {
-  background: var(--surface);
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid var(--border2);
-  position: relative;
-  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.7);
-}
-
-/* Subtle top gradient line */
-.pricing::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--accent3), var(--accent), transparent);
-}
-
-.launch-badge {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: var(--accent);
-  color: #000;
-  font-size: 0.62rem;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-.launch-badge:hover {
-  box-shadow: 0 0 18px rgba(249,115,22,0.6);
-  transform: scale(1.06);
-}
-@keyframes pulse-badge {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.5); }
-  50%       { box-shadow: 0 0 0 8px rgba(249,115,22,0); }
-}
+.pricing-outer { max-width: 580px; margin: 0 auto; position: relative; }
+.pricing-outer::before { content: ''; position: absolute; inset: -40px; background: radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 70%); pointer-events: none; }
+.pricing { background: var(--surface); border-radius: 28px; overflow: hidden; border: 1px solid var(--border2); position: relative; box-shadow: 0 32px 80px -20px rgba(0,0,0,0.7); }
+.pricing::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), var(--accent3), var(--accent), transparent); }
+.launch-badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: #000; font-size: 0.62rem; font-weight: 800; font-family: var(--font-mono); padding: 4px 12px; border-radius: 20px; letter-spacing: 0.1em; text-transform: uppercase; transition: box-shadow 0.3s, transform 0.3s; }
+.launch-badge:hover { box-shadow: 0 0 18px rgba(249,115,22,0.6); transform: scale(1.06); }
+@keyframes pulse-badge { 0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.5); } 50% { box-shadow: 0 0 0 8px rgba(249,115,22,0); } }
 .launch-badge { animation: pulse-badge 2.5s ease-in-out infinite; }
-
-/* License counter */
-.license-counter {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--accent);
-  background: rgba(249,115,22,0.07);
-  border: 1px solid rgba(249,115,22,0.22);
-  border-radius: 8px;
-  padding: 6px 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-}
-
-.pricing-header {
-  background: linear-gradient(135deg, var(--surface2), var(--bg2));
-  padding: 40px 36px 32px;
-  border-bottom: 1px solid var(--border);
-}
-
-.pricing-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-/* ── PRICE ROW (fixed alignment) ──────────────────────────────────────────── */
-.price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-
-.price-old {
-  font-family: var(--font-mono);
-  font-size: 1.4rem;
-  color: var(--dim);
-  text-decoration: line-through;
-  text-decoration-color: var(--red);
-  text-decoration-thickness: 2px;
-}
-
-/* Discount badge inline */
-.discount-badge {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #000;
-  background: var(--green);
-  padding: 3px 8px;
-  border-radius: 6px;
-  align-self: center;
-  letter-spacing: 0.04em;
-}
-
-.price-current-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-}
-
-.price-currency-sym {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  align-self: flex-start;
-  margin-top: 4px;
-  line-height: 1;
-}
-
-.price {
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.price-usd {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--muted);
-  align-self: flex-end;
-  padding-bottom: 6px;
-  margin-left: 4px;
-}
-
-.pricing-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.pricing-features {
-  padding: 28px 36px;
-}
-
+.license-counter { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.22); border-radius: 8px; padding: 6px 14px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.pricing-header { background: linear-gradient(135deg, var(--surface2), var(--bg2)); padding: 40px 36px 32px; border-bottom: 1px solid var(--border); }
+.pricing-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+.price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.price-old { font-family: var(--font-mono); font-size: 1.4rem; color: var(--dim); text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.discount-badge { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: #000; background: var(--green); padding: 3px 8px; border-radius: 6px; align-self: center; letter-spacing: 0.04em; }
+.price-current-wrap { display: flex; align-items: baseline; gap: 2px; }
+.price-currency-sym { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent); align-self: flex-start; margin-top: 4px; line-height: 1; }
+.price { font-size: 3.5rem; font-weight: 900; letter-spacing: -0.04em; color: var(--accent); line-height: 1; }
+.price-usd { font-family: var(--font-mono); font-size: 0.9rem; color: var(--muted); align-self: flex-end; padding-bottom: 6px; margin-left: 4px; }
+.pricing-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+.pricing-features { padding: 28px 36px; }
 .pricing-features ul { list-style: none; }
-
-.pricing-features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
-}
+.pricing-features li { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
 .pricing-features li:last-child { border-bottom: none; }
-
-.check {
-  color: var(--green);
-  font-size: 0.8rem;
-  margin-top: 2px;
-  flex-shrink: 0;
-  width: 18px; height: 18px;
-  background: rgba(16,185,129,0.1);
-  border: 1px solid rgba(16,185,129,0.25);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-
-.pricing-footer {
-  padding: 24px 36px 36px;
-  background: var(--bg2);
-}
-
-.refund-line {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
+.check { color: var(--green); font-size: 0.8rem; margin-top: 2px; flex-shrink: 0; width: 18px; height: 18px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.pricing-footer { padding: 24px 36px 36px; background: var(--bg2); }
+.refund-line { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-align: center; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .refund-line i { color: var(--green); }
+.free-tier-note { text-align: center; margin-top: 24px; font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); line-height: 1.6; }
 
-.free-tier-note {
-  text-align: center;
-  margin-top: 24px;
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  line-height: 1.6;
-}
-
-/* ── FAQ ────────────────────────────────────────────────────────────────────── */
+/* ── FAQ (sin cambios) ──────────────────────────────────────────────────────── */
 #faq { padding: 80px 0; }
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px 24px;
-  transition: border-color 0.2s;
-  cursor: pointer;
-}
+.faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; transition: border-color 0.2s; cursor: pointer; }
 .faq-item:hover { border-color: var(--border2); }
 .faq-item.open { border-color: rgba(249,115,22,0.3); }
-
-.faq-question {
-  font-weight: 700;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  line-height: 1.45;
-}
-
-.faq-question .faq-icon {
-  color: var(--accent);
-  font-size: 0.7rem;
-  margin-top: 4px;
-  flex-shrink: 0;
-  transition: transform 0.25s;
-}
+.faq-question { font-weight: 700; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; line-height: 1.45; }
+.faq-question .faq-icon { color: var(--accent); font-size: 0.7rem; margin-top: 4px; flex-shrink: 0; transition: transform 0.25s; }
 .faq-item.open .faq-icon { transform: rotate(180deg); }
-
-.faq-answer {
-  margin-top: 0;
-  color: var(--muted);
-  font-size: 0.83rem;
-  display: none;
-  line-height: 1.65;
-}
+.faq-answer { margin-top: 0; color: var(--muted); font-size: 0.83rem; display: none; line-height: 1.65; }
 .faq-answer.show { display: block; padding-top: 12px; }
 
 /* ── FOOTER ─────────────────────────────────────────────────────────────────── */
-.footer {
-  margin-top: 80px;
-  padding: 36px 0 40px;
-  border-top: 1px solid var(--border);
-  position: relative;
-  z-index: 1;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.footer-copy {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-.footer-links a {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.footer { margin-top: 80px; padding: 36px 0 40px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--accent); }
 
 /* ── SCROLL ANIMATIONS ──────────────────────────────────────────────────────── */
-.fade-up {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 .fade-up:nth-child(2) { transition-delay: 0.1s; }
 .fade-up:nth-child(3) { transition-delay: 0.2s; }
 
@@ -906,14 +242,10 @@ body::after {
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .faq-grid { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 700px) {
   .container { padding: 0 18px; }
   .features-grid { grid-template-columns: 1fr; }
-  .steps-row {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+  .steps-row { grid-template-columns: 1fr; gap: 16px; }
   .steps-row::before { display: none; }
   .step { margin: 0; }
   .hero { padding: 60px 0 40px; }
@@ -931,10 +263,19 @@ body::after {
   .launch-note { font-size: 0.68rem; padding: 8px 12px; }
   .price-row { flex-wrap: wrap; gap: 8px; }
 }
-
 @media (max-width: 400px) {
   .nav-links a, .nav-links .lang-switch { font-size: 0.65rem; }
 }
+
+/* ── Nuevos estilos para la galería de imágenes ────────────────────────────── */
+.screenshots-gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 48px 0 60px; }
+.screenshot-card { max-width: 320px; background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
+.screenshot-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.screenshot-card img { width: 100%; display: block; }
+.screenshot-card p { font-size: 0.7rem; text-align: center; padding: 8px; color: var(--muted); font-family: var(--font-mono); }
+.gif-showcase { margin: 32px 0 24px; text-align: center; }
+.gif-showcase img { max-width: 100%; border-radius: 20px; box-shadow: 0 12px 28px rgba(0,0,0,0.3); border: 1px solid rgba(249,115,22,0.2); }
+.gif-caption { font-size: 0.7rem; color: var(--muted); margin-top: 12px; font-family: var(--font-mono); }
 </style>
 
 <script type="application/ld+json">
@@ -980,153 +321,111 @@ body::after {
   <!-- ── HERO ── -->
   <div class="hero">
     <div class="hero-orb"></div>
-
     <div class="hero-terminal-line">
       <div class="term-bar">
-        <span class="term-dot r"></span>
-        <span class="term-dot y"></span>
-        <span class="term-dot g"></span>
-        &nbsp; pr-focus --inbox --ai-mode on
-        <span class="cursor">▌</span>
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        &nbsp; pr-focus --inbox --ai-mode on <span class="cursor">▌</span>
       </div>
     </div>
-
     <h1>
       <span class="word-normal">Your GitHub PR inbox,</span><br>
       <span class="word-accent" data-i18n-part="heroAccent">supercharged by AI</span>
     </h1>
-
     <p data-i18n="heroDesc">Stop drowning in pull requests. PR Focus prioritizes what needs your attention, summarizes every change, and drafts your review in one click — so you ship faster.</p>
-
     <div class="hero-buttons">
       <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" rel="noopener">
         <span data-i18n="buyNowLaunch">🔥 Get PRO – $9.50 Launch special</span>
       </a>
-      <a href="#features" class="btn-outline">
-        <span data-i18n="learnMore">Learn more ↓</span>
-      </a>
+      <a href="#features" class="btn-outline"><span data-i18n="learnMore">Learn more ↓</span></a>
       <a href="https://projekta2.github.io/pr-focus-landing/pr-focus-demo.html" class="btn-outline" target="_blank" rel="noopener">
-  <i class="fas fa-play-circle"></i> Live demo
-</a>
-     </div>
-
-  <div style="display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; margin-top: 8px;">
-    <a href="https://chromewebstore.google.com/detail/pr-focus-ai-pro/ememaiabefeojkccjclglcmbjmdpnaoe" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
-      <i class="fab fa-chrome"></i> Install free
-    </a>
-    <a href="https://github.com/projekta2/pr-focus-landing" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
-      <i class="fab fa-github"></i> GitHub
-    </a>
-  </div>
-
-  <div class="launch-note">
+        <i class="fas fa-play-circle"></i> Live demo
+      </a>
+    </div>
+    <div style="display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; margin-top: 8px;">
+      <a href="https://chromewebstore.google.com/detail/pr-focus-ai-pro/ememaiabefeojkccjclglcmbjmdpnaoe" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
+        <i class="fab fa-chrome"></i> Install free
+      </a>
+      <a href="https://github.com/projekta2/pr-focus-landing" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+    <div class="launch-note">
       <strong data-i18n="launchOffer">🔥 Launch offer:</strong>
       <span data-i18n="launchPrice">Regular $19 – Now $9.50 (50% off). Limited units. Price increases after launch.</span>
     </div>
   </div>
 
-  <!-- ── BANNER ── -->
+  <!-- Banner principal (imagen estática) -->
   <div class="banner-wrap fade-up">
     <div class="banner-img">
       <div class="banner-chrome-bar">
-        <span class="chrome-dot"></span>
-        <span class="chrome-dot"></span>
-        <span class="chrome-dot"></span>
+        <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
         <div class="chrome-url">chrome-extension://pr-focus/popup/popup.html</div>
       </div>
       <img src="pr-focus-banner.png" alt="PR Focus Pro Chrome extension interface showing AI-powered PR prioritization, risk scores, and one-click draft reviews">
     </div>
   </div>
 
-  <!-- ── EMAIL CAPTURE SECTION (Gumroad) ── -->
+  <!-- GIF 1: Demostración en acción (después de los botones, antes de la nota de lanzamiento) -->
+  <div class="gif-showcase fade-up">
+    <img src="assets/pr-focus-github-gif-1.gif" alt="PR Focus Pro in action – AI summaries and risk scoring">
+    <div class="gif-caption" data-i18n="gif1Caption">Real demo: AI summarizes PRs and assigns risk scores (0‑100)</div>
+  </div>
+
+  <!-- Sección de email capture (sin cambios) -->
   <div class="capture-section fade-up" style="background: linear-gradient(135deg, var(--surface2), var(--bg2)); border-radius: 28px; padding: 48px 32px; margin: 60px 0; border: 1px solid var(--border); text-align: center;">
     <div class="section-eyebrow" style="justify-content: center;">EARLY ACCESS</div>
     <h2 style="font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 16px;">Be the first to know when PR Focus Pro launches</h2>
     <p style="color: var(--muted); max-width: 520px; margin: 0 auto 32px;">We're finalizing the extension. Join the waitlist and we'll notify you the moment it's live — plus a special thank‑you discount for early subscribers.</p>
-
     <div style="max-width: 260px; margin: 0 auto;">
-      <a href="https://projekta2.gumroad.com/subscribe" target="_blank" class="btn-primary" style="display: block; padding: 14px 28px; font-size: 0.9rem; text-align: center; text-decoration: none;">
-        Join the waitlist →
-      </a>
+      <a href="https://projekta2.gumroad.com/subscribe" target="_blank" class="btn-primary" style="display: block; padding: 14px 28px; font-size: 0.9rem; text-align: center; text-decoration: none;">Join the waitlist →</a>
     </div>
     <p style="font-size: 0.7rem; color: var(--dim); margin-top: 24px;">No spam. Unsubscribe anytime. Your email is only used for launch notification.</p>
   </div>
 
-  <!-- ── FEATURES ── -->
+  <!-- Features (sin cambios) -->
   <div id="features" class="fade-up">
     <div class="section-eyebrow">Capabilities</div>
-    <div class="section-title">
-      Everything you need<br>
-      <span class="dim-word" data-i18n="featuresTitle">to review code faster</span>
-    </div>
-
+    <div class="section-title">Everything you need<br><span class="dim-word" data-i18n="featuresTitle">to review code faster</span></div>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-icon" data-tip="Powered by your AI key"><i class="fas fa-robot"></i></div>
-        <h3 data-i18n="feat1Title">AI PR Summaries</h3>
-        <p data-i18n="feat1Desc">2–3 sentence plain-English explanation of every PR, generated from the actual diff.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-icon" data-tip="Auth, DB, infra detection"><i class="fas fa-chart-line"></i></div>
-        <h3 data-i18n="feat2Title">Risk Scoring (0–100)</h3>
-        <p data-i18n="feat2Desc">AI assesses CI status, age, and code scope (auth, DB, infra) to flag risky changes.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-icon" data-tip="Edit before sending"><i class="fas fa-pen-fancy"></i></div>
-        <h3 data-i18n="feat3Title">One‑click Draft Reviews</h3>
-        <p data-i18n="feat3Desc">Generate approve or request‑changes drafts from the diff. Edit and send without leaving the extension.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-icon" data-tip="CI + age + AI risk merged"><i class="fas fa-bolt"></i></div>
-        <h3 data-i18n="feat4Title">Hybrid Priority Queue</h3>
-        <p data-i18n="feat4Desc">Combines CI failures, PR age, and AI risk score into a single priority sort.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">05</div>
-        <div class="feature-icon" data-tip="Personal + work accounts"><i class="fas fa-users"></i></div>
-        <h3 data-i18n="feat5Title">Multi‑account GitHub</h3>
-        <p data-i18n="feat5Desc">Switch between personal and work accounts in one click.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">06</div>
-        <div class="feature-icon" data-tip="OpenAI · Groq · Mistral · Ollama"><i class="fas fa-lock"></i></div>
-        <h3 data-i18n="feat6Title">100% Local – BYOK</h3>
-        <p data-i18n="feat6Desc">Your keys never leave your browser. Works with OpenAI, Groq, Mistral, or local Ollama.</p>
-      </div>
+      <div class="feature-card"><div class="feature-num">01</div><div class="feature-icon" data-tip="Powered by your AI key"><i class="fas fa-robot"></i></div><h3 data-i18n="feat1Title">AI PR Summaries</h3><p data-i18n="feat1Desc">2–3 sentence plain-English explanation of every PR, generated from the actual diff.</p></div>
+      <div class="feature-card"><div class="feature-num">02</div><div class="feature-icon" data-tip="Auth, DB, infra detection"><i class="fas fa-chart-line"></i></div><h3 data-i18n="feat2Title">Risk Scoring (0–100)</h3><p data-i18n="feat2Desc">AI assesses CI status, age, and code scope (auth, DB, infra) to flag risky changes.</p></div>
+      <div class="feature-card"><div class="feature-num">03</div><div class="feature-icon" data-tip="Edit before sending"><i class="fas fa-pen-fancy"></i></div><h3 data-i18n="feat3Title">One‑click Draft Reviews</h3><p data-i18n="feat3Desc">Generate approve or request‑changes drafts from the diff. Edit and send without leaving the extension.</p></div>
+      <div class="feature-card"><div class="feature-num">04</div><div class="feature-icon" data-tip="CI + age + AI risk merged"><i class="fas fa-bolt"></i></div><h3 data-i18n="feat4Title">Hybrid Priority Queue</h3><p data-i18n="feat4Desc">Combines CI failures, PR age, and AI risk score into a single priority sort.</p></div>
+      <div class="feature-card"><div class="feature-num">05</div><div class="feature-icon" data-tip="Personal + work accounts"><i class="fas fa-users"></i></div><h3 data-i18n="feat5Title">Multi‑account GitHub</h3><p data-i18n="feat5Desc">Switch between personal and work accounts in one click.</p></div>
+      <div class="feature-card"><div class="feature-num">06</div><div class="feature-icon" data-tip="OpenAI · Groq · Mistral · Ollama"><i class="fas fa-lock"></i></div><h3 data-i18n="feat6Title">100% Local – BYOK</h3><p data-i18n="feat6Desc">Your keys never leave your browser. Works with OpenAI, Groq, Mistral, or local Ollama.</p></div>
     </div>
   </div>
 
-  <!-- ── HOW IT WORKS ── -->
-  <div id="how-it-works" style="padding:80px 0" class="fade-up">
+  <!-- Segundo GIF: vista detallada (después de features) -->
+  <div class="gif-showcase fade-up">
+    <img src="assets/pr-focus-github-gif-2.gif" alt="PR Focus Pro – one-click draft review">
+    <div class="gif-caption" data-i18n="gif2Caption">One‑click draft review generation from the AI analysis</div>
+  </div>
+
+  <!-- Galería de capturas de pantalla (añadida antes de "How it works") -->
+  <div class="fade-up">
+    <div class="section-eyebrow" style="justify-content: center;">REAL SCREENSHOTS</div>
+    <div class="section-title" style="text-align: center;">See it in action</div>
+    <div class="screenshots-gallery">
+      <div class="screenshot-card"><img src="assets/screenshot-inbox-ai-summaries.jpeg" alt="Inbox with AI summaries"><p data-i18n="screenshot1">AI summaries and risk scores in your PR inbox</p></div>
+      <div class="screenshot-card"><img src="assets/screenshot-ai-draft-review.jpeg" alt="Draft review panel"><p data-i18n="screenshot2">Generate draft reviews with one click</p></div>
+      <div class="screenshot-card"><img src="assets/screenshot-risk-score.jpg" alt="Risk score detail"><p data-i18n="screenshot3">Detailed risk breakdown (0‑100)</p></div>
+    </div>
+  </div>
+
+  <!-- How It Works (sin cambios) -->
+  <div id="how-it-works" class="fade-up">
     <div class="section-eyebrow">Setup</div>
     <div class="section-title" data-i18n="howTitle">How it works</div>
     <div class="steps-row">
-      <div class="step">
-        <div class="step-badge">step_01</div>
-        <div class="step-icon"><i class="fas fa-download"></i></div>
-        <h3 data-i18n="step1Title">Install &amp; connect</h3>
-        <p data-i18n="step1Desc">Add the extension, paste your GitHub token (classic, with repo scope).</p>
-      </div>
-      <div class="step">
-        <div class="step-badge">step_02</div>
-        <div class="step-icon"><i class="fas fa-key"></i></div>
-        <h3 data-i18n="step2Title">(Optional) Add AI key</h3>
-        <p data-i18n="step2Desc">Bring your own OpenAI, Groq, or other key to unlock AI features.</p>
-      </div>
-      <div class="step">
-        <div class="step-badge">step_03</div>
-        <div class="step-icon"><i class="fas fa-check-double"></i></div>
-        <h3 data-i18n="step3Title">Review smarter</h3>
-        <p data-i18n="step3Desc">Open the popup – PRs are automatically summarized, prioritized, and ready for draft reviews.</p>
-      </div>
+      <div class="step"><div class="step-badge">step_01</div><div class="step-icon"><i class="fas fa-download"></i></div><h3 data-i18n="step1Title">Install &amp; connect</h3><p data-i18n="step1Desc">Add the extension, paste your GitHub token (classic, with repo scope).</p></div>
+      <div class="step"><div class="step-badge">step_02</div><div class="step-icon"><i class="fas fa-key"></i></div><h3 data-i18n="step2Title">(Optional) Add AI key</h3><p data-i18n="step2Desc">Bring your own OpenAI, Groq, or other key to unlock AI features.</p></div>
+      <div class="step"><div class="step-badge">step_03</div><div class="step-icon"><i class="fas fa-check-double"></i></div><h3 data-i18n="step3Title">Review smarter</h3><p data-i18n="step3Desc">Open the popup – PRs are automatically summarized, prioritized, and ready for draft reviews.</p></div>
     </div>
   </div>
 
-  <!-- ── PRICING ── -->
+  <!-- Pricing (sin cambios) -->
   <div id="pricing" class="fade-up">
     <div class="section-eyebrow">Pricing</div>
     <div class="section-title" data-i18n="pricingTitle">Simple, lifetime pricing</div>
@@ -1135,100 +434,44 @@ body::after {
         <div class="launch-badge">🔥 LAUNCH</div>
         <div class="pricing-header">
           <div class="pricing-label">PR Focus PRO</div>
-
-          <!-- License availability note -->
-          <div class="license-counter" id="licenseNote">
-            🚀 <span data-i18n="licenseNote">Limited launch – first 100 customers</span>
-          </div>
-
-          <!-- Fixed price row -->
-          <div class="price-row">
-            <span class="price-old">$19</span>
-            <span class="discount-badge">–50%</span>
-            <div class="price-current-wrap">
-              <span class="price-currency-sym">$</span>
-              <span class="price">9.50</span>
-              <span class="price-usd">USD</span>
-            </div>
-          </div>
+          <div class="license-counter">🚀 <span data-i18n="licenseNote">Limited launch – first 100 customers</span></div>
+          <div class="price-row"><span class="price-old">$19</span><span class="discount-badge">–50%</span><div class="price-current-wrap"><span class="price-currency-sym">$</span><span class="price">9.50</span><span class="price-usd">USD</span></div></div>
           <div class="pricing-sub" data-i18n="pricingSub">One‑time payment. Lifetime access.</div>
         </div>
-        <div class="pricing-features">
-          <ul>
-            <li><span class="check"><i class="fas fa-check" style="font-size:.55rem"></i></span> <span data-i18n="pro1">AI summaries for every PR</span></li>
-            <li><span class="check"><i class="fas fa-check" style="font-size:.55rem"></i></span> <span data-i18n="pro2">Risk score (0–100) + reasons</span></li>
-            <li><span class="check"><i class="fas fa-check" style="font-size:.55rem"></i></span> <span data-i18n="pro3">One‑click draft reviews (approve/request changes)</span></li>
-            <li><span class="check"><i class="fas fa-check" style="font-size:.55rem"></i></span> <span data-i18n="pro4">Full stats history &amp; AI priority sorting</span></li>
-            <li><span class="check"><i class="fas fa-check" style="font-size:.55rem"></i></span> <span data-i18n="pro5">All future updates</span></li>
-          </ul>
-        </div>
-        <div class="pricing-footer">
-          <a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center">
-            <span data-i18n="buyNow">🔥 Get PRO – $9.50 Launch special</span>
-          </a>
-          <div class="refund-line">
-            <i class="fas fa-shield-halved"></i>
-            <span data-i18n="refundNote">30‑day money‑back guarantee</span>
-          </div>
-        </div>
+        <div class="pricing-features"><ul><li><span class="check"><i class="fas fa-check"></i></span> <span data-i18n="pro1">AI summaries for every PR</span></li><li><span class="check"><i class="fas fa-check"></i></span> <span data-i18n="pro2">Risk score (0–100) + reasons</span></li><li><span class="check"><i class="fas fa-check"></i></span> <span data-i18n="pro3">One‑click draft reviews (approve/request changes)</span></li><li><span class="check"><i class="fas fa-check"></i></span> <span data-i18n="pro4">Full stats history &amp; AI priority sorting</span></li><li><span class="check"><i class="fas fa-check"></i></span> <span data-i18n="pro5">All future updates</span></li></ul></div>
+        <div class="pricing-footer"><a href="https://projekta2.gumroad.com/l/PRFocusAIPro" class="btn-primary" style="width:100%;justify-content:center"><span data-i18n="buyNow">🔥 Get PRO – $9.50 Launch special</span></a><div class="refund-line"><i class="fas fa-shield-halved"></i><span data-i18n="refundNote">30‑day money‑back guarantee</span></div></div>
       </div>
     </div>
     <p class="free-tier-note" data-i18n="freeTierNote">The free tier includes multi‑account, sorting, export, and stale notifications.</p>
   </div>
 
-  <!-- ── FAQ ── -->
-  <div id="faq" style="padding:80px 0" class="fade-up">
+  <!-- FAQ (sin cambios) -->
+  <div id="faq" class="fade-up">
     <div class="section-eyebrow">FAQ</div>
     <div class="section-title" data-i18n="faqTitle">Frequently asked questions</div>
     <div class="faq-grid">
-      <div class="faq-item">
-        <div class="faq-question">
-          <span data-i18n="faq1q">Do I need an AI API key?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-answer" data-i18n="faq1a">Only for AI features (summaries, risk, drafts). You can use Groq's free tier or any OpenAI‑compatible provider.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span data-i18n="faq2q">Is my data safe?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-answer" data-i18n="faq2a">Yes – everything stays in your browser. No servers, no tracking. Your GitHub and AI keys are stored locally.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span data-i18n="faq3q">Can I use the same license on multiple devices?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-answer" data-i18n="faq3a">Yes – one license per OS user profile. You can deactivate and reactivate up to 3 times per year.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span data-i18n="faq4q">What's the refund policy?</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-answer" data-i18n="faq4a">30‑day full refund, no questions asked. If it doesn't save you time, we'll return your money.</div>
-      </div>
+      <div class="faq-item"><div class="faq-question"><span data-i18n="faq1q">Do I need an AI API key?</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer" data-i18n="faq1a">Only for AI features (summaries, risk, drafts). You can use Groq's free tier or any OpenAI‑compatible provider.</div></div>
+      <div class="faq-item"><div class="faq-question"><span data-i18n="faq2q">Is my data safe?</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer" data-i18n="faq2a">Yes – everything stays in your browser. No servers, no tracking. Your GitHub and AI keys are stored locally.</div></div>
+      <div class="faq-item"><div class="faq-question"><span data-i18n="faq3q">Can I use the same license on multiple devices?</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer" data-i18n="faq3a">Yes – one license per OS user profile. You can deactivate and reactivate up to 3 times per year.</div></div>
+      <div class="faq-item"><div class="faq-question"><span data-i18n="faq4q">What's the refund policy?</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer" data-i18n="faq4a">30‑day full refund, no questions asked. If it doesn't save you time, we'll return your money.</div></div>
     </div>
   </div>
 
-  <!-- ── FOOTER ── -->
+  <!-- Footer -->
   <div class="footer">
-    <div class="footer-inner">
-      <div class="footer-copy">
-        © 2026 PR Focus – Built for developers who take code review seriously.
-      </div>
-      <div class="footer-links">
-        <a href="https://projekta2.github.io/pr-focus-privacy/" target="_blank" rel="noopener" data-i18n="privacyLink">Privacy Policy</a>
-        <a href="https://projekta2.github.io/pr-focus-terms/" target="_blank" rel="noopener" data-i18n="termsLink">Terms of Service</a>
-      </div>
-    </div>
+    <div class="footer-inner"><div class="footer-copy">© 2026 PR Focus – Built for developers who take code review seriously.</div><div class="footer-links"><a href="https://projekta2.github.io/pr-focus-privacy/" target="_blank" rel="noopener" data-i18n="privacyLink">Privacy Policy</a><a href="https://projekta2.github.io/pr-focus-terms/" target="_blank" rel="noopener" data-i18n="termsLink">Terms of Service</a></div></div>
   </div>
+</div>
 
-</div><!-- /container -->
+<!-- Badge de Product Hunt -->
+<div style="text-align: center; margin-top: 40px;">
+  <a href="https://www.producthunt.com/products/pr-focus-pro?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-pr-focus-pro" target="_blank" rel="noopener noreferrer">
+    <img alt="PR Focus Pro - Stop drowning in PRs. AI analyzes them in seconds. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1164866&amp;theme=dark&amp;t=1780760774634">
+  </a>
+</div>
 
 <script>
-// ── I18N ──────────────────────────────────────────────────────────────────────
+// ── I18N con nuevas claves para imágenes y galería ─────────────────────────
 const translations = {
   en: {
     navFeatures:"Features", navPricing:"Pricing", navFaq:"FAQ",
@@ -1260,7 +503,12 @@ const translations = {
     privacyLink:"Privacy Policy", termsLink:"Terms of Service",
     launchOffer:"🔥 Launch offer:", launchPrice:"Regular $19 – Now $9.50 (50% off). Limited units. Price increases after launch.",
     heroAccent:"supercharged by AI",
-    licenseNote:"Limited launch – first 100 customers"
+    licenseNote:"Limited launch – first 100 customers",
+    gif1Caption:"Real demo: AI summarizes PRs and assigns risk scores (0‑100)",
+    gif2Caption:"One‑click draft review generation from the AI analysis",
+    screenshot1:"AI summaries and risk scores in your PR inbox",
+    screenshot2:"Generate draft reviews with one click",
+    screenshot3:"Detailed risk breakdown (0‑100)"
   },
   es: {
     navFeatures:"Características", navPricing:"Precios", navFaq:"FAQ",
@@ -1292,7 +540,12 @@ const translations = {
     privacyLink:"Política de Privacidad", termsLink:"Términos de Servicio",
     launchOffer:"🔥 Oferta de lanzamiento:", launchPrice:"$19 regular – Ahora $9.50 (50% dto.). Unidades limitadas. El precio subirá después del lanzamiento.",
     heroAccent:"potenciada por IA",
-    licenseNote:"Lanzamiento limitado – primeros 100 clientes"
+    licenseNote:"Lanzamiento limitado – primeros 100 clientes",
+    gif1Caption:"Demo real: IA resume PRs y asigna puntuaciones de riesgo (0‑100)",
+    gif2Caption:"Generación de borrador de revisión con un clic a partir del análisis IA",
+    screenshot1:"Resúmenes IA y puntuaciones de riesgo en tu bandeja de PRs",
+    screenshot2:"Genera borradores de revisión con un clic",
+    screenshot3:"Desglose detallado del riesgo (0‑100)"
   }
 };
 
@@ -1305,19 +558,15 @@ function setLanguage(lang) {
     const k = el.getAttribute('data-i18n');
     if (t[k] !== undefined) el.textContent = t[k];
   });
-  // Hero accent word (inside h1 span)
   const accentEl = document.querySelector('[data-i18n-part="heroAccent"]');
   if (accentEl && t.heroAccent) accentEl.textContent = t.heroAccent;
   document.getElementById('langToggle').textContent = lang === 'en' ? '🇪🇸 Español' : '🇬🇧 English';
-  document.getElementById('langToggle').setAttribute('aria-label',
-    lang === 'en' ? 'Cambiar a Español' : 'Switch to English');
+  document.getElementById('langToggle').setAttribute('aria-label', lang === 'en' ? 'Cambiar a Español' : 'Switch to English');
 }
 
-document.getElementById('langToggle').addEventListener('click', () => {
-  setLanguage(currentLang === 'en' ? 'es' : 'en');
-});
+document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'en' ? 'es' : 'en'));
 
-// ── FAQ ────────────────────────────────────────────────────────────────────────
+// FAQ toggle
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
     const answer = item.querySelector('.faq-answer');
@@ -1329,36 +578,20 @@ document.querySelectorAll('.faq-item').forEach(item => {
     if (!isOpen) {
       item.classList.add('open');
       answer.classList.add('show');
-      // Smooth scroll to the opened FAQ item
-      setTimeout(() => {
-        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 60);
+      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
     }
   });
 });
 
-// ── SCROLL ANIMATIONS ──────────────────────────────────────────────────────────
+// Scroll animations
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      obs.unobserve(e.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-// License note is static – no dynamic countdown
-
-// ── LANGUAGE DETECT ────────────────────────────────────────────────────────────
+// Idioma inicial
 const bl = navigator.language.slice(0, 2);
 setLanguage(bl === 'es' ? 'es' : 'en');
 </script>
- <!-- ✅ Badge de Product Hunt (añadido aquí) -->
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="https://www.producthunt.com/products/pr-focus-pro?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-pr-focus-pro" target="_blank" rel="noopener noreferrer">
-            <img alt="PR Focus Pro - Stop drowning in PRs. AI analyzes them in seconds. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1164866&amp;theme=dark&amp;t=1780760774634">
-        </a>
-    </div>
 </body>
 </html>
