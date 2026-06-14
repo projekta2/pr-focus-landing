@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* ── RESET & ROOT (exactamente igual que el original, sin cambios) ───────── */
+/* ── RESET & ROOT (sin cambios, igual que antes) ────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -134,7 +134,7 @@ body::after {
 .launch-note { display: inline-flex; align-items: flex-start; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.18); padding: 8px 16px; border-radius: 8px; line-height: 1.5; flex-wrap: wrap; max-width: 100%; }
 .launch-note strong { color: var(--accent); flex-shrink: 0; }
 
-/* ── BANNER IMAGE ───────────────────────────────────────────────────────────── */
+/* ── BANNER IMAGE (mantenemos pr-focus-banner.png en raíz) ─────────────────── */
 .banner-wrap { position: relative; max-width: 980px; margin: 0 auto 48px; }
 @media (min-width: 701px) { .banner-wrap { margin-bottom: 40px; } }
 .banner-wrap::before { content: ''; position: absolute; inset: -1px; border-radius: 26px; background: linear-gradient(135deg, rgba(249,115,22,0.4), rgba(251,191,36,0.2), rgba(249,115,22,0.1)); z-index: 0; }
@@ -267,7 +267,7 @@ body::after {
   .nav-links a, .nav-links .lang-switch { font-size: 0.65rem; }
 }
 
-/* ── Nuevos estilos para la galería de imágenes ────────────────────────────── */
+/* ── Estilos para GIFs y galería ────────────────────────────────────────── */
 .screenshots-gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 48px 0 60px; }
 .screenshot-card { max-width: 320px; background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
 .screenshot-card:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -355,7 +355,7 @@ body::after {
     </div>
   </div>
 
-  <!-- Banner principal (imagen estática) -->
+  <!-- Banner principal (imagen estática en raíz) -->
   <div class="banner-wrap fade-up">
     <div class="banner-img">
       <div class="banner-chrome-bar">
@@ -366,13 +366,13 @@ body::after {
     </div>
   </div>
 
-  <!-- GIF 1: Demostración en acción (después de los botones, antes de la nota de lanzamiento) -->
+  <!-- GIF 1 -->
   <div class="gif-showcase fade-up">
     <img src="assets/pr-focus-github-gif-1.gif" alt="PR Focus Pro in action – AI summaries and risk scoring">
     <div class="gif-caption" data-i18n="gif1Caption">Real demo: AI summarizes PRs and assigns risk scores (0‑100)</div>
   </div>
 
-  <!-- Sección de email capture (sin cambios) -->
+  <!-- Email capture -->
   <div class="capture-section fade-up" style="background: linear-gradient(135deg, var(--surface2), var(--bg2)); border-radius: 28px; padding: 48px 32px; margin: 60px 0; border: 1px solid var(--border); text-align: center;">
     <div class="section-eyebrow" style="justify-content: center;">EARLY ACCESS</div>
     <h2 style="font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 16px;">Be the first to know when PR Focus Pro launches</h2>
@@ -383,7 +383,7 @@ body::after {
     <p style="font-size: 0.7rem; color: var(--dim); margin-top: 24px;">No spam. Unsubscribe anytime. Your email is only used for launch notification.</p>
   </div>
 
-  <!-- Features (sin cambios) -->
+  <!-- Features -->
   <div id="features" class="fade-up">
     <div class="section-eyebrow">Capabilities</div>
     <div class="section-title">Everything you need<br><span class="dim-word" data-i18n="featuresTitle">to review code faster</span></div>
@@ -397,24 +397,24 @@ body::after {
     </div>
   </div>
 
-  <!-- Segundo GIF: vista detallada (después de features) -->
+  <!-- GIF 2 -->
   <div class="gif-showcase fade-up">
     <img src="assets/pr-focus-github-gif-2.gif" alt="PR Focus Pro – one-click draft review">
     <div class="gif-caption" data-i18n="gif2Caption">One‑click draft review generation from the AI analysis</div>
   </div>
 
-  <!-- Galería de capturas de pantalla (añadida antes de "How it works") -->
+  <!-- Galería de capturas reales (usando tus archivos) -->
   <div class="fade-up">
     <div class="section-eyebrow" style="justify-content: center;">REAL SCREENSHOTS</div>
     <div class="section-title" style="text-align: center;">See it in action</div>
     <div class="screenshots-gallery">
       <div class="screenshot-card"><img src="assets/screenshot-inbox-ai-summaries.jpeg" alt="Inbox with AI summaries"><p data-i18n="screenshot1">AI summaries and risk scores in your PR inbox</p></div>
       <div class="screenshot-card"><img src="assets/screenshot-ai-draft-review.jpeg" alt="Draft review panel"><p data-i18n="screenshot2">Generate draft reviews with one click</p></div>
-      <div class="screenshot-card"><img src="assets/screenshot-risk-score.jpg" alt="Risk score detail"><p data-i18n="screenshot3">Detailed risk breakdown (0‑100)</p></div>
+      <div class="screenshot-card"><img src="assets/screenshot-stats-dashboard.jpeg" alt="Stats dashboard"><p data-i18n="screenshot3">Full statistics history (PRO)</p></div>
     </div>
   </div>
 
-  <!-- How It Works (sin cambios) -->
+  <!-- How It Works -->
   <div id="how-it-works" class="fade-up">
     <div class="section-eyebrow">Setup</div>
     <div class="section-title" data-i18n="howTitle">How it works</div>
@@ -425,7 +425,7 @@ body::after {
     </div>
   </div>
 
-  <!-- Pricing (sin cambios) -->
+  <!-- Pricing -->
   <div id="pricing" class="fade-up">
     <div class="section-eyebrow">Pricing</div>
     <div class="section-title" data-i18n="pricingTitle">Simple, lifetime pricing</div>
@@ -445,7 +445,7 @@ body::after {
     <p class="free-tier-note" data-i18n="freeTierNote">The free tier includes multi‑account, sorting, export, and stale notifications.</p>
   </div>
 
-  <!-- FAQ (sin cambios) -->
+  <!-- FAQ -->
   <div id="faq" class="fade-up">
     <div class="section-eyebrow">FAQ</div>
     <div class="section-title" data-i18n="faqTitle">Frequently asked questions</div>
@@ -471,7 +471,7 @@ body::after {
 </div>
 
 <script>
-// ── I18N COMPLETO (inglés y español sin mezclas) ─────────────────────────
+// ── I18N (inglés y español completos) ─────────────────────────────────────
 const translations = {
   en: {
     navFeatures: "Features",
@@ -529,7 +529,7 @@ const translations = {
     gif2Caption: "One‑click draft review generation from the AI analysis",
     screenshot1: "AI summaries and risk scores in your PR inbox",
     screenshot2: "Generate draft reviews with one click",
-    screenshot3: "Detailed risk breakdown (0‑100)"
+    screenshot3: "Full statistics history (PRO)"
   },
   es: {
     navFeatures: "Características",
@@ -587,7 +587,7 @@ const translations = {
     gif2Caption: "Generación de borrador de revisión con un clic a partir del análisis IA",
     screenshot1: "Resúmenes IA y puntuaciones de riesgo en tu bandeja de PRs",
     screenshot2: "Genera borradores de revisión con un clic",
-    screenshot3: "Desglose detallado del riesgo (0‑100)"
+    screenshot3: "Historial completo de estadísticas (PRO)"
   }
 };
 
