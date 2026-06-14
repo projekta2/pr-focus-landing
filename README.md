@@ -180,6 +180,14 @@ Here’s what PR Focus Pro looks like in action. All screenshots are from the li
 |:---:|:---:|
 | ![Upgrade](assets/screenshot-upgrade-pro.jpg) | ![Banner large](assets/banner-large.jpg) |
 
+### 🎬 Live demo in action
+
+<div align="center">
+  
+| Quick overview | Detailed PR analysis |
+|:---:|:---:|
+| ![PR Focus demo 1](assets/pr-focus-github-gif-1.gif) | ![PR Focus demo 2](assets/pr-focus-github-gif-2.gif) |
+
 </div>
 
 > 💡 You can also try the **[▶ interactive live demo](https://projekta2.github.io/projekta2-pr-focus-landing/pr-focus-demo.html)** – a fully interactive simulation with a guided tour. No installation required.
