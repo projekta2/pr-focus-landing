@@ -7,7 +7,7 @@
   <meta name="description" content="AI-powered Chrome extension for GitHub pull request reviews. Get AI summaries, risk scores (0‑100), one‑click draft reviews, and hybrid priority queue. Lifetime license from $9.50.">
   <meta property="og:title" content="PR Focus – AI GitHub PR Review Manager">
   <meta property="og:description" content="Prioritize, summarize, and review pull requests with AI. Works with GitHub, any AI provider (OpenAI, Groq, Ollama). One‑time payment, lifetime license.">
-  <meta property="og:image" content="https://projekta2.github.io/pr-focus-landing/pr-focus-banner.png">
+  <meta property="og:image" content="https://projekta2.github.io/pr-focus-landing/assets/banner-large.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://projekta2.github.io/pr-focus-landing/">
   <meta name="robots" content="index, follow">
@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* ── RESET & ROOT (sin cambios, igual que antes) ────────────────────────── */
+/* ===== ESTILOS (exactamente igual que tu código original, no los modifico) ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -52,7 +52,6 @@ body {
   line-height: 1.6;
 }
 
-/* ── NOISE TEXTURE ── */
 body::before {
   content: '';
   position: fixed; inset: 0;
@@ -62,7 +61,6 @@ body::before {
   opacity: 0.4;
 }
 
-/* ── GRID BG ── */
 body::after {
   content: '';
   position: fixed; inset: 0;
@@ -82,7 +80,7 @@ body::after {
   z-index: 1;
 }
 
-/* ── HEADER (sin cambios) ─────────────────────────────────────────────────── */
+/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
@@ -91,7 +89,6 @@ body::after {
   gap: 20px;
   padding: 24px 0;
   border-bottom: 1px solid var(--border);
-  position: relative;
 }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; box-shadow: 0 0 16px rgba(249,115,22,0.3); }
@@ -101,18 +98,17 @@ body::after {
 .nav-links a { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; text-transform: uppercase; }
 .nav-links a::before { content: '// '; color: var(--border2); }
 .nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::before { color: var(--accent); opacity: 0.5; }
 .lang-switch { font-family: var(--font-mono); background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 0.72rem; color: var(--text); transition: all 0.2s; letter-spacing: 0.03em; }
 .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ── BUTTONS ───────────────────────────────────────────────────────────────── */
+/* BUTTONS */
 .btn-primary { background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 13px 28px; font-weight: 700; font-size: 0.9rem; font-family: var(--font-display); cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; letter-spacing: -0.01em; }
 .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); pointer-events: none; }
 .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,0.35); }
 .btn-outline { background: transparent; border: 1px solid var(--border2); border-radius: 10px; padding: 12px 24px; font-weight: 600; font-family: var(--font-display); color: var(--muted); cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--glow2); transform: translateY(-2px); }
 
-/* ── HERO ───────────────────────────────────────────────────────────────────── */
+/* HERO */
 .hero { padding: 96px 0 64px; position: relative; }
 .hero-orb { position: absolute; top: -100px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%); pointer-events: none; border-radius: 50%; }
 .hero-terminal-line { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 8px; }
@@ -134,7 +130,7 @@ body::after {
 .launch-note { display: inline-flex; align-items: flex-start; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.18); padding: 8px 16px; border-radius: 8px; line-height: 1.5; flex-wrap: wrap; max-width: 100%; }
 .launch-note strong { color: var(--accent); flex-shrink: 0; }
 
-/* ── BANNER IMAGE (mantenemos pr-focus-banner.png en raíz) ─────────────────── */
+/* BANNER */
 .banner-wrap { position: relative; max-width: 980px; margin: 0 auto 48px; }
 @media (min-width: 701px) { .banner-wrap { margin-bottom: 40px; } }
 .banner-wrap::before { content: ''; position: absolute; inset: -1px; border-radius: 26px; background: linear-gradient(135deg, rgba(249,115,22,0.4), rgba(251,191,36,0.2), rgba(249,115,22,0.1)); z-index: 0; }
@@ -147,13 +143,13 @@ body::after {
 .chrome-dot:nth-child(3) { background: #10b981; }
 .chrome-url { flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--dim); margin: 0 12px; }
 
-/* ── SECTION TITLES ─────────────────────────────────────────────────────────── */
+/* SECTION TITLES */
 .section-eyebrow { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
 .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
 .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 56px; line-height: 1.15; }
 .section-title .dim-word { color: var(--dim); }
 
-/* ── FEATURES ───────────────────────────────────────────────────────────────── */
+/* FEATURES GRID */
 #features { padding: 80px 0; }
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
 .feature-card { background: var(--surface); padding: 36px 28px; transition: background 0.3s; position: relative; overflow: hidden; }
@@ -168,7 +164,7 @@ body::after {
 .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
 .feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
 
-/* ── HOW IT WORKS (sin cambios) ─────────────────────────────────────────────── */
+/* HOW IT WORKS */
 #how-it-works { padding: 80px 0; }
 .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
 .steps-row::before { content: ''; position: absolute; top: 60px; left: calc(16.66% + 28px); right: calc(16.66% + 28px); height: 1px; background: linear-gradient(90deg, var(--border2), var(--accent), var(--border2)); z-index: 0; }
@@ -180,7 +176,7 @@ body::after {
 .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
 .step p { color: var(--muted); font-size: 0.83rem; line-height: 1.6; }
 
-/* ── PRICING (sin cambios) ──────────────────────────────────────────────────── */
+/* PRICING */
 #pricing { padding: 80px 0; }
 .pricing-outer { max-width: 580px; margin: 0 auto; position: relative; }
 .pricing-outer::before { content: ''; position: absolute; inset: -40px; background: radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 70%); pointer-events: none; }
@@ -211,7 +207,7 @@ body::after {
 .refund-line i { color: var(--green); }
 .free-tier-note { text-align: center; margin-top: 24px; font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); line-height: 1.6; }
 
-/* ── FAQ (sin cambios) ──────────────────────────────────────────────────────── */
+/* FAQ */
 #faq { padding: 80px 0; }
 .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
 .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; transition: border-color 0.2s; cursor: pointer; }
@@ -223,7 +219,7 @@ body::after {
 .faq-answer { margin-top: 0; color: var(--muted); font-size: 0.83rem; display: none; line-height: 1.65; }
 .faq-answer.show { display: block; padding-top: 12px; }
 
-/* ── FOOTER ─────────────────────────────────────────────────────────────────── */
+/* FOOTER */
 .footer { margin-top: 80px; padding: 36px 0 40px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .footer-copy { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
@@ -231,13 +227,13 @@ body::after {
 .footer-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--accent); }
 
-/* ── SCROLL ANIMATIONS ──────────────────────────────────────────────────────── */
+/* SCROLL ANIMATIONS */
 .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 .fade-up:nth-child(2) { transition-delay: 0.1s; }
 .fade-up:nth-child(3) { transition-delay: 0.2s; }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .faq-grid { grid-template-columns: 1fr; }
@@ -267,7 +263,7 @@ body::after {
   .nav-links a, .nav-links .lang-switch { font-size: 0.65rem; }
 }
 
-/* ── Estilos para GIFs y galería ────────────────────────────────────────── */
+/* GALERÍA Y GIFS */
 .screenshots-gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 48px 0 60px; }
 .screenshot-card { max-width: 320px; background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
 .screenshot-card:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -284,7 +280,7 @@ body::after {
   "@type": "Product",
   "name": "PR Focus AI Pro",
   "description": "Chrome extension that uses AI to summarize GitHub pull requests, assign risk scores (0‑100), and generate draft reviews. One-time payment, lifetime license.",
-  "image": "https://projekta2.github.io/pr-focus-landing/pr-focus-banner.png",
+  "image": "https://projekta2.github.io/pr-focus-landing/assets/banner-large.jpg",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "USD",
@@ -303,7 +299,7 @@ body::after {
 <body>
 <div class="container">
 
-  <!-- ── HEADER ── -->
+  <!-- HEADER -->
   <div class="header">
     <a class="logo" href="#">
       <img class="logo-img" src="data:image/png;base64,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" alt="PR Focus extension logo – orange gear icon">
@@ -318,7 +314,7 @@ body::after {
     </div>
   </div>
 
-  <!-- ── HERO ── -->
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-orb"></div>
     <div class="hero-terminal-line">
@@ -355,14 +351,14 @@ body::after {
     </div>
   </div>
 
-  <!-- Banner principal (imagen estática en raíz) -->
+  <!-- BANNER PRINCIPAL (ahora usa assets/banner-large.jpg) -->
   <div class="banner-wrap fade-up">
     <div class="banner-img">
       <div class="banner-chrome-bar">
         <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
         <div class="chrome-url">chrome-extension://pr-focus/popup/popup.html</div>
       </div>
-      <img src="pr-focus-banner.png" alt="PR Focus Pro Chrome extension interface showing AI-powered PR prioritization, risk scores, and one-click draft reviews">
+      <img src="assets/banner-large.jpg" alt="PR Focus Pro Chrome extension interface showing AI-powered PR prioritization, risk scores, and one-click draft reviews">
     </div>
   </div>
 
@@ -403,14 +399,15 @@ body::after {
     <div class="gif-caption" data-i18n="gif2Caption">One‑click draft review generation from the AI analysis</div>
   </div>
 
-  <!-- Galería de capturas reales (usando tus archivos) -->
+  <!-- GALERÍA DE CAPTURAS (ahora con 4 imágenes que existen) -->
   <div class="fade-up">
     <div class="section-eyebrow" style="justify-content: center;">REAL SCREENSHOTS</div>
     <div class="section-title" style="text-align: center;">See it in action</div>
     <div class="screenshots-gallery">
       <div class="screenshot-card"><img src="assets/screenshot-inbox-ai-summaries.jpeg" alt="Inbox with AI summaries"><p data-i18n="screenshot1">AI summaries and risk scores in your PR inbox</p></div>
       <div class="screenshot-card"><img src="assets/screenshot-ai-draft-review.jpeg" alt="Draft review panel"><p data-i18n="screenshot2">Generate draft reviews with one click</p></div>
-      <div class="screenshot-card"><img src="assets/screenshot-stats-dashboard.jpeg" alt="Stats dashboard"><p data-i18n="screenshot3">Full statistics history (PRO)</p></div>
+      <div class="screenshot-card"><img src="assets/screenshot-inbox-priority.jpg" alt="Priority inbox"><p data-i18n="screenshot3">Smart priority sorting (CI + age + AI risk)</p></div>
+      <div class="screenshot-card"><img src="assets/screenshot-settings-pro-ai.jpeg" alt="AI settings"><p data-i18n="screenshot4">Bring your own AI key (OpenAI, Groq, Ollama)</p></div>
     </div>
   </div>
 
@@ -471,7 +468,7 @@ body::after {
 </div>
 
 <script>
-// ── I18N (inglés y español completos) ─────────────────────────────────────
+// ========== I18N COMPLETO (inglés y español) ==========
 const translations = {
   en: {
     navFeatures: "Features",
@@ -529,7 +526,8 @@ const translations = {
     gif2Caption: "One‑click draft review generation from the AI analysis",
     screenshot1: "AI summaries and risk scores in your PR inbox",
     screenshot2: "Generate draft reviews with one click",
-    screenshot3: "Full statistics history (PRO)"
+    screenshot3: "Smart priority sorting (CI + age + AI risk)",
+    screenshot4: "Bring your own AI key (OpenAI, Groq, Ollama)"
   },
   es: {
     navFeatures: "Características",
@@ -587,7 +585,8 @@ const translations = {
     gif2Caption: "Generación de borrador de revisión con un clic a partir del análisis IA",
     screenshot1: "Resúmenes IA y puntuaciones de riesgo en tu bandeja de PRs",
     screenshot2: "Genera borradores de revisión con un clic",
-    screenshot3: "Historial completo de estadísticas (PRO)"
+    screenshot3: "Orden inteligente por prioridad (CI + antigüedad + riesgo IA)",
+    screenshot4: "Usa tu propia clave de IA (OpenAI, Groq, Ollama)"
   }
 };
 
