@@ -309,7 +309,7 @@ $ open_popup → PRs sorted, summarized, ready ✓
 ✅  (optional) AI provider key: OpenAI · Groq (free tier) · Mistral · Ollama
 ❌  No local installation required
 ❌  No account registration
-❌  No data sent to any server
+✅  Diffs only sent to the AI provider you configure — never to our servers
 ```
 
 <br />
