@@ -28,7 +28,6 @@
   </a>
 </p>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=projekta2/pr-focus-landing&type=Date)](https://star-history.com/#projekta2/pr-focus-landing&Date)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Live-10b981?style=flat-square&logo=statuspage&logoColor=white" />
@@ -38,6 +37,8 @@
   <img src="https://img.shields.io/badge/PRO_–_$9.50_lifetime-ff90e8?style=flat-square&logo=gumroad&logoColor=black" />
   <img src="https://img.shields.io/badge/Privacy-100%25_local-10b981?style=flat-square&logo=shieldsdotio&logoColor=white" />
 </p>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=projekta2/pr-focus-landing&type=Date)](https://star-history.com/#projekta2/pr-focus-landing&Date)
 
 <br />
 
