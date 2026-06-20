@@ -28,6 +28,8 @@
   </a>
 </p>
 
+[![Star History Chart](https://api.star-history.com/svg?repos=projekta2/pr-focus-landing&type=Date)](https://star-history.com/#projekta2/pr-focus-landing&Date)
+
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Live-10b981?style=flat-square&logo=statuspage&logoColor=white" />
   <img src="https://img.shields.io/badge/Version-2.0-f97316?style=flat-square" />
