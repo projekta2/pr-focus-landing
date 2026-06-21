@@ -104,6 +104,8 @@
 
 <br />
 
+📓 I also document the engineering decisions behind this project in [Build Logs](https://github.com/projekta2/build-logs).
+
 ## ✨ Features
 
 <br />
