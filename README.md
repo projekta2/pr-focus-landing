@@ -443,6 +443,12 @@ Yes — one license per OS user profile. You can deactivate and reactivate up to
 
 I document every significant decision behind PR Focus — including why I chose BYOK and how I built the hybrid risk scoring engine — in my [Build Logs repo](https://github.com/projekta2/build-logs). You can also join the monthly [Review Swap](https://github.com/projekta2/build-logs/issues/1) to trade PR feedback with other developers.
 
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:f97316,100:ea580c&height=2" width="100%" />
+</p>
+
+<br />
+
 ## 👨‍💻 About the Creator
 
 <br />
