@@ -439,6 +439,16 @@ Yes — one license per OS user profile. You can deactivate and reactivate up to
 
 <br />
 
+<br />
+
+<p align="center">
+  <a href="https://github.com/projekta2/build-logs">
+    <img src="https://img.shields.io/badge/📓_Build_Logs-Read_the_decision_logs-0ea5e9?style=for-the-badge&labelColor=0f172a" alt="Build Logs" />
+  </a>
+</p>
+
+<br />
+
 ## 📓 Engineering decisions in public
 
 I document every significant decision behind PR Focus — including why I chose BYOK and how I built the hybrid risk scoring engine — in my [Build Logs repo](https://github.com/projekta2/build-logs). You can also join the monthly [Review Swap](https://github.com/projekta2/build-logs/issues/1) to trade PR feedback with other developers.
