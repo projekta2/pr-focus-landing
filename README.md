@@ -37,6 +37,8 @@
   <img src="https://img.shields.io/badge/PRO_–_$9.50_lifetime-ff90e8?style=flat-square&logo=gumroad&logoColor=black" />
   <img src="https://img.shields.io/badge/Privacy-100%25_local-10b981?style=flat-square&logo=shieldsdotio&logoColor=white" />
   <img src="https://img.shields.io/github/actions/workflow/status/projekta2/pr-focus-landing/ci.yml?label=CI%20passing&style=flat-square&color=10b981&labelColor=0c0f1a" />
+  <img src="https://img.shields.io/chrome-web-store/users/ememaiabefeojkccjclglcmbjmdpnaoe?label=Users&logo=googlechrome&color=3b82f6&style=flat-square" />
+  <img src="https://img.shields.io/chrome-web-store/v/ememaiabefeojkccjclglcmbjmdpnaoe?label=Version&logo=googlechrome&color=8b5cf6&style=flat-square" />  
 </p>
 
 [![Star History Chart](https://api.star-history.com/svg?repos=projekta2/pr-focus-landing&type=Date)](https://star-history.com/#projekta2/pr-focus-landing&Date)
